@@ -7,7 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { AuthPageRoutingModule } from './auth-routing.module';
 
 import { AuthPage } from './auth.page';
-
+import { LogInComponent } from './components/log-in/log-in.component';
+const PAGES = [AuthPage,LogInComponent];
 @NgModule({
   imports: [
     CommonModule,
@@ -16,6 +17,6 @@ import { AuthPage } from './auth.page';
     IonicModule,
     AuthPageRoutingModule
   ],
-  declarations: [AuthPage]
+  declarations: [...PAGES]
 })
 export class AuthPageModule {}

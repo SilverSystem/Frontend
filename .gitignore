@@ -6,22 +6,15 @@
 .tmp
 *.tmp
 *.tmp.*
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+Thumbs.db
 UserInterfaceState.xcuserstate
 $RECYCLE.BIN/
 
 *.log
 log.txt
-
-
-/.sourcemaps
-/.versions
-/coverage
-
-# Ionic
-/.ionic
-/www
-/platforms
-/plugins
 
 # Compiled output
 /dist
@@ -46,6 +39,7 @@ yarn-error.log
 
 # Visual Studio Code
 .vscode/*
+/.vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -66,3 +60,13 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+npm-debug.log*
+/.idea
+/.ionic
+/.sass-cache
+/.sourcemaps
+/.versions
+/platforms
+/plugins
+/www
