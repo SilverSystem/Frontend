@@ -12,15 +12,19 @@ export const validationErrors = {
 };
 
 export const customEmailValidator = (control: AbstractControl): { [key: string]: boolean } | null =>
-emailRegex.test(control.value) ? null : { email:true };
+(emailRegex.test(control.value)) ? null : { email:true };
+
+
 export const customAdminEmailValidator = (control: AbstractControl): { [key: string]: boolean } | null =>
 emailRegex.test(control.value) || control.value === 'admin@admin' ? null : { email:true };
 
 export const specialCharactersValidator = (control: AbstractControl): { [key: string]: boolean } | null =>
-specialCharactersRegex.test(control.value) ? { specialCharacters:true }: null;
+control.value === null ? { specialCharacters:true } : (specialCharactersRegex.test(control.value) || control.value.trim().length === 0) ?
+{ specialCharacters:true }: null;
 
 export const onlyNumbersValidator = (control: AbstractControl): { [key: string]: boolean } | null =>
 onlyNumbersRegex.test(control.value) ? null : { textOnNumberField:true };
 
 export const socialReasonValidator = (control: AbstractControl): { [key: string]: boolean } | null =>
-socialReasonRegex.test(control.value) ? { socialReason:true }: null;
+control.value === null ? { socialReason:true } : (socialReasonRegex.test(control.value) || control.value.trim().length === 0) ?
+{ socialReason:true }: null;

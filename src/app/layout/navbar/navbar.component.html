@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-grid class="ion-no-padding">
+      <ion-row class="ion-align-items-center">
+        <ion-col size="12" sizeLg="6" sizeMd="6" sizeXl="6">
+          <ion-row class="ion-justify-content-start ion-align-items-center">
+            <ion-col size="11" sizeLg="12" sizeXl="12">
+              <ion-item>
+                <ion-img [src]="logo"></ion-img>
+              </ion-item>
+            </ion-col>
+            <ion-col size="1" sizeLg="0" sizeXl="0">
+              <ion-buttons>
+                <ion-menu-button menu="main"> </ion-menu-button>
+              </ion-buttons>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col size="6" class="ion-hide-md-down">
+          <ion-item lines="none" style="cursor: pointer; text-align: end">
+            <div class="circle" [ngStyle]="{ 'background-color': circleColor }" slot="end">
+              <div class="initials">
+                {{ initials }}
+              </div>
+            </div>
+
+            <ion-label>
+              <p>
+                <b style="
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                  ">{{ 'Sin nombre' }}</b>
+              </p>
+              <p style="
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  white-space: nowrap;
+                ">
+                {{ momentDate | date:'EEEE dd MMMM YYYY HH:mm' | titlecase }}
+              </p>
+            </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>

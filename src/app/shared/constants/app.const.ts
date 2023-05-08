@@ -22,3 +22,21 @@ export const selectColor = (conditionCA: any) => {
   };
   return colors[conditionCA] || 'tertiary' ;
 };
+export const menuRoutes = [
+  {
+    label: 'Gestión de fichas',
+    route: '/construccion-curricular',
+    icon: 'options-outline',
+    visibility: ['Constructor_Curricular','Administrador'],
+    accordion: false,
+    accordionData: [],
+  },
+  {
+    label: 'Mis fichas',
+    route: '/construccion-curricular/mis-fichas',
+    icon: 'options-outline',
+    visibility: ['Constructor_Curricular','Administrador'],
+    accordion: false,
+    accordionData: [],
+  },
+];

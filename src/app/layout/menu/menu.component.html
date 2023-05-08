@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-item lines="none">
+    <img [src]="logo" class="menu_logo">
+  </ion-item>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-list class="ion-no-padding">
+    <ion-row *ngFor="let item of menuRoutes">
+      <ion-col class="ion-no-margin ion-no-padding" *ngIf="checkPermissions(item.label)">
+        <ion-item *ngIf="!item.accordion; else Acordeon" button [routerLink]="item.route"
+          style="width: 100%;">
+          <ion-icon slot="start" [name]="item.icon"></ion-icon>
+          <ion-label>{{item.label}}</ion-label>
+        </ion-item>
+        <ng-template #Acordeon>
+          <ion-accordion-group>
+            <ion-accordion value="first">
+              <ion-item slot="header">
+                <ion-icon slot="start" [name]="item.icon"></ion-icon>
+                <ion-label>{{item.label}}</ion-label>
+              </ion-item>
+              <ion-item *ngFor="let acc of item.accordionData" button [routerLink]="acc.route"
+                slot="content">
+                <ion-icon style="padding-left: 30px;" name="chevron-forward-outline"></ion-icon>
+                <ion-label>{{acc.label}}</ion-label>
+              </ion-item>
+            </ion-accordion>
+          </ion-accordion-group>
+        </ng-template>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" class="ion-no-margin ion-no-padding">
+        <ion-item button (click)="presentAlertConfirmLogout()">
+          <ion-icon slot="start" name="log-out-outline"></ion-icon>
+          <ion-label>Cerrar sesión</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

@@ -7,6 +7,10 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es-VE';
+
+registerLocaleData(localeEs, 'es-VE');
 
 @NgModule({
   declarations: [AppComponent],

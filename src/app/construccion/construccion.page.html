@@ -1,0 +1,11 @@
+<ion-split-pane when="md" contentId="main">
+  <ion-menu contentId="main" menuId="main">
+    <app-menu style="height: 100%;"></app-menu>
+  </ion-menu>
+  <div class="ion-page" id="main">
+    <app-navbar></app-navbar>
+    <ion-content>
+      <ion-router-outlet id="menu-content"></ion-router-outlet>
+    </ion-content>
+  </div>
+</ion-split-pane>

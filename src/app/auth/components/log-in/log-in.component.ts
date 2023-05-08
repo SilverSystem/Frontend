@@ -81,8 +81,14 @@ export class LogInComponent  implements OnInit {
     if(!post.email || !post.password){
       this.presentToastMissingFields('Faltan campos por rellenar para poder iniciar sesión');
     } else{
-      this.authService.login(post).subscribe((request) =>{
-        console.log('la request',request);
+      this.authService.login(post).subscribe({
+        next: (request) =>{
+          console.log('la request',request);
+          this.router.navigate(['/construccion']);
+        },
+        error:(err) => {
+          console.log(err);
+        }
       });
     }
   }
