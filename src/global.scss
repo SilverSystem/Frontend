@@ -24,3 +24,202 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+.backdrop {
+  &::part(content) {
+    --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+    --backdrop-opacity: rgba(0, 0, 0, 0.32);
+  }
+}
+
+.modal-xxl-float-right {
+  &::part(content) {
+    border: 1px solid var(--ion-color-light);
+    display: block;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    width: 40%;
+  }
+}
+
+.modal-xxl-float-left {
+  &::part(content) {
+    border: 1px solid var(--ion-color-light);
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    width: 40%;
+  }
+}
+
+.modal-sm {
+  &::part(content) {
+    width: 20%;
+    min-height: 10%;
+    position: absolute;
+    display: block;
+    border: 1px solid var(--ion-color-light);
+    border-radius: 8px;
+  }
+}
+.modal-md {
+  &::part(content) {
+    width: 40%;
+    min-height: 10%;
+    position: absolute;
+    display: block;
+    border: 1px solid var(--ion-color-light);
+    border-radius: 8px;
+  }
+}
+
+.modal-lg {
+  &::part(content) {
+    width: 50%;
+    min-height: 10%;
+    position: absolute;
+    display: block;
+    border: 1px solid var(--ion-color-light);
+    border-radius: 8px;
+  }
+}
+.cmodal-xl {
+  &::part(content) {
+    width: 74%;
+    min-height: 10%;
+    position: absolute;
+    display: block;
+    border: 1px solid var(--ion-color-light);
+    border-radius: 8px;
+  }
+}
+.modal-xxl {
+  &::part(content) {
+    width: 85%;
+    min-height: 10%;
+    position: absolute;
+    display: block;
+    border: 1px solid var(--ion-color-light);
+    border-radius: 8px;
+  }
+}
+
+ion-modal.modal-sm,
+ion-modal.modal-md,
+ion-modal.modal-lg,
+ion-modal.cmodal-xl,
+ion-modal.modal-xxl {
+  --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+  --backdrop-opacity: var(--ion-backdrop-opacity, 0.32);
+  --height: auto;
+
+  .ion-page {
+    position: relative;
+    display: block;
+    contain: content;
+
+    .inner-content {
+      overflow: auto;
+      max-height: 80vh;
+    }
+  }
+}
+@media only screen and (max-width: 768px) {
+  .modal-content,
+  .cmodal-xl,
+  .modal-lg,
+  .modal-md,
+  .horizontal-modal-md,
+  .frm-anamnesis-modal,
+  .modal-xxl-float-right,
+  .modal-xxl-float-left {
+    &::part(content) {
+      border: 1px solid var(--ion-color-light);
+      height: 100%;
+      position: absolute;
+      width: 100%;
+    }
+  }
+}
+.table-border{
+border-radius: 10px;
+border: solid 2px #ddd;
+}
+.container {
+  margin: 16px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+
+ion-select::part(icon){
+transform: none;
+}
+.tooltip{
+background-color: #69707a !important;
+}
+
+.title {
+  font-weight: bold;
+  font-size: x-large;
+}
+.total-sheet {
+  font-weight: bold;
+  font-size: large;
+}
+// Animations that we don't fully understand
+$tile-bg: #cfcfdf;
+.header{
+padding: 10%;
+}
+.items{
+padding: 35%;
+}
+
+.tile {
+animation: 1s ease 0s pulse infinite;
+background: $tile-bg;
+// border-radius: 4px;
+// height: 80%;
+// margin: 5px;
+// width: 100%;
+}
+
+.item.sc-ion-label-md-h, .item .sc-ion-label-md-h {
+  white-space: initial;
+}
+
+
+// Loop from 1-9.
+@for $i from 1 through 5 {
+.tile {
+
+  // :nth-child(1-9)
+  &:nth-child(#{$i}) {
+
+    // Delay the animation. Delay increases as items loop.
+    animation-delay: $i * calc(1s / 12);
+  }
+}
+}
+
+@keyframes pulse {
+0% {
+  background: $tile-bg;
+  transform: scale(1);
+}
+
+25% {
+  background: darken($tile-bg, 10%);
+  transform: scale(1.015);
+}
+
+50% {
+  background: $tile-bg;
+  transform: scale(1);
+}
+}
+

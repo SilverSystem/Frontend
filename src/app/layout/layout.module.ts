@@ -5,9 +5,11 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MenuComponent } from './menu/menu.component';
+import { ContentLoaderComponent } from './content-loader/content-loader.component';
 const LAYOUT_COMPONENTS = [
   NavbarComponent,
-  MenuComponent
+  MenuComponent,
+  ContentLoaderComponent
 ];
 
 
