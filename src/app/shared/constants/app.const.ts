@@ -5,22 +5,13 @@ export const socialReasonRegex = /[`!@#$%^&*()_+=\[\]{};':"\\|,<>\/?~]/;
 export const IMG_LOGO = '../../../assets/LogoInces.png';
 export const selectColor = (conditionCA: any) => {
   const colors = {
-    aprobado: 'success',
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    'Aprobada completamente': 'success',
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    'Aprobada parcialmente': 'tertiary',
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    'Asignada en curso': 'secondary',
-    rechazado: 'danger',
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    'Con rechazo': 'danger',
-    'pendiente de validacion': 'warning',
-    pendiente: 'warning',
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    Pendiente: 'warning',
+    aprobadaCompletamente: 'success',
+    enCurso: 'tertiary',
+    conRechazo: 'danger',
+    pendientes: 'warning',
+    sinAsignar: 'secondary'
   };
-  return colors[conditionCA] || 'tertiary' ;
+  return colors[conditionCA] || 'secondary' ;
 };
 export const menuRoutes = [
   {

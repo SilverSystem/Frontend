@@ -1,0 +1,108 @@
+<ion-row>
+  <ion-col size="12">
+    <ion-row class="ion-align-items-center ion-justify-content-around">
+      <ion-col size="10" sizeLg="10">
+        <h2 style="font-weight: bold">
+          Guía de Evaluación
+        </h2>
+      </ion-col>
+      <ion-col size="2" sizeLg="1">
+        <ion-button color="dark" (click)="cancel()" fill="clear">
+          <ion-icon name="close-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-item>
+      <ion-label>Tema {{numeration}}</ion-label>
+    </ion-item>
+  </ion-col>
+</ion-row>
+<section class="inner-content container">
+  <form [formGroup]="guiasEvaluacionForm">
+    <ion-row>
+      <ion-col sizeLg="3" size="12">
+        <ion-text color="primary">
+          <h3>Evaluación según su propósito</h3>
+        </ion-text>
+        <ion-item class="border-details" lines="none">
+          <ion-label>Diagnóstica</ion-label>
+        </ion-item>
+        <ion-item class="border-details" lines="none">
+          <ion-label>Formativa</ion-label>
+        </ion-item>
+        <ion-item class="border-details" lines="none">
+          <ion-label>Sumativa</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col sizeLg="3" size="12">
+        <ion-text color="primary">
+          <h3>Técnicas e instrumento</h3>
+        </ion-text>
+        <div class="border-details">
+          <ion-input class="form-input" type="text" formControlName="procedimientoDiagnostico"
+          label="Procedimiento" labelPlacement="floating" fill="outline"></ion-input>
+        <ion-input class="form-input" type="text" formControlName="tecnicaDiagnostico"
+          label="Técnica" labelPlacement="floating" fill="outline"></ion-input>
+        <ion-input class="form-input" type="text" formControlName="instrumentoDiagnostico"
+          label="Instrumento" labelPlacement="floating" fill="outline"></ion-input>
+        </div>
+        <div class="border-details">
+          <ion-input class="form-input" type="text" formControlName="procedimientoFormativa"
+          label="Procedimiento" labelPlacement="floating" fill="outline"></ion-input>
+        <ion-input class="form-input" type="text" formControlName="tecnicaFormativa"
+          label="Técnica" labelPlacement="floating" fill="outline"></ion-input>
+        <ion-input class="form-input" type="text" formControlName="instrumentoFormativa"
+          label="Instrumento" labelPlacement="floating" fill="outline"></ion-input>
+        </div>
+        <div class="border-details">
+          <ion-input class="form-input" type="text" formControlName="procedimientoSumativa"
+          label="Procedimiento" labelPlacement="floating" fill="outline"></ion-input>
+        <ion-input class="form-input" type="text" formControlName="tecnicaSumativa"
+          label="Técnica" labelPlacement="floating" fill="outline"></ion-input>
+        <ion-input class="form-input" type="text" formControlName="instrumentoSumativa"
+          label="Instrumento" labelPlacement="floating" fill="outline"></ion-input>
+        </div>
+      </ion-col>
+      <ion-col sizeLg="3" size="12">
+        <ion-text color="primary">
+          <h3>Formas de participación</h3>
+          <ion-item class="border-details" lines="none">
+            <ion-select value="seleccione" multiple="true" label="Formas de participación Diagnóstica"
+              formControlName="formaParticipacionDiagnostica">
+              <ion-select-option value="seleccione">Seleccione una opcion</ion-select-option>
+              <ion-select-option *ngFor="let way of formasparticipacion" [value]="way">{{way}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item class="border-details" lines="none">
+            <ion-select value="seleccione" multiple="true" label="Formas de participación Formativa"
+              formControlName="formaParticipacionFormativa">
+              <ion-select-option value="seleccione">Seleccione una opcion</ion-select-option>
+              <ion-select-option *ngFor="let way of formasparticipacion" [value]="way">{{way}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item class="border-details" lines="none">
+            <ion-select value="seleccione" multiple="true" label="Formas de participación Sumativa"
+              formControlName="formaParticipacionSumativa">
+              <ion-select-option value="seleccione">Seleccione una opcion</ion-select-option>
+              <ion-select-option *ngFor="let way of formasparticipacion" [value]="way">{{way}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-text>
+      </ion-col>
+      <ion-col sizeLg="3" size="12">
+        <ion-text color="primary">
+          <h3>Ubicación temporal de la evaluación</h3>
+        </ion-text>
+        <ion-item class="border-details" lines="none">
+          <ion-label><span>Momento:</span> Inicio</ion-label>
+        </ion-item>
+        <ion-item class="border-details" lines="none">
+          <ion-label><span>Momento:</span> Desarrollo</ion-label>
+        </ion-item>
+        <ion-item class="border-details" lines="none">
+          <ion-label><span>Momento:</span> Cierre</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </form>
+</section>

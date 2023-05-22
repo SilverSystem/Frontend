@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ConstruccionPage } from './construccion.page';
 import { DashboardFichasComponent } from './components/dashboard-fichas/dashboard-fichas.component';
+import { FichaDetailComponent } from './components/ficha-detail/ficha-detail.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
       {
         path:'',
         component:DashboardFichasComponent
+      },
+      {
+        path: 'fichaNumero',
+        component: FichaDetailComponent
       }
     ]
   }

@@ -34,4 +34,29 @@ export class AuthService {
     };
     return this.httpClient.post<any>(url,post);
   }
+  reSendCode(email: string): Observable<any>{
+    const url = `${API_URL}/resend-email`;
+    const params = {
+      email,
+    };
+    return this.httpClient.post(url,params);
+  }
+  passwordRecovery(formvalue: any): Observable<any> {
+    const url = `${API_URL}/password-recovery`;
+    const params = {
+      email: formvalue.recoveryEmail,
+    };
+    return this.httpClient.post(url, params);
+  }
+
+  confirmPasswordRecovery(body): Observable<any> {
+    const url = `${API_URL}/confirm-password-recovery`;
+    const params = {
+      email: body.email,
+      nuevaPassword: body.newPassword,
+      // eslint-disable-next-line radix
+      codigoConfirmacion: parseInt(body.code),
+    };
+    return this.httpClient.post(url, params);
+  }
 }

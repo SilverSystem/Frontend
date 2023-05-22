@@ -1,0 +1,101 @@
+<ion-row class="ion-align-items-center ion-justify-content-around">
+  <ion-col size="10" sizeLg="10">
+    <h2 style="font-weight: bold">
+      Estrategias Metodológicas, Didácticas y Pedagógicas
+    </h2>
+  </ion-col>
+  <ion-col size="2" sizeLg="1">
+    <ion-button color="dark" (click)="cancel()" fill="clear">
+      <ion-icon name="close-outline"></ion-icon>
+    </ion-button>
+  </ion-col>
+</ion-row>
+<section class="inner-content container">
+  <form [formGroup]="estrategiasForm">
+    <ion-row>
+      <ion-col size="4" class="border-details">
+        <ion-text color="primary">
+          <h3>Estrategias de Enseñanza</h3>
+        </ion-text>
+        <ion-input class="form-input" type="text" label="Estrategias de Enseñanza" placeholder=""
+          labelPlacement="floating" fill="outline"
+          (keyup.enter)="tecniquesRows($event,'estrategiasEnsenanzas')"></ion-input>
+        <p style="padding-left: 20px;" *ngFor="let obs of estrategiasEnsenanzas">* {{obs}}</p>
+      </ion-col>
+      <ion-col size="4" class="border-details">
+        <ion-text color="primary">
+          <h3>Medios Instruccionales</h3>
+        </ion-text>
+        <ion-input class="form-input" type="text" label="Medios Instruccionales" placeholder=""
+          labelPlacement="floating" fill="outline"
+          (keyup.enter)="tecniquesRows($event,'mediosInstruccionales')"></ion-input>
+        <p style="padding-left: 20px;" *ngFor="let product of mediosInstruccionales">* {{product}}</p>
+      </ion-col>
+      <ion-col size="4" class="border-details">
+        <ion-text color="primary">
+          <h3>Técnicas Instruccionales</h3>
+        </ion-text>
+        <ion-input class="form-input" type="text" label="Técnicas Instruccionales" placeholder=""
+          labelPlacement="floating" fill="outline"
+          (keyup.enter)="tecniquesRows($event,'tecnicasInstruccionales')"></ion-input>
+        <p style="padding-left: 20px;" *ngFor="let con of tecnicasInstruccionales">* {{con}}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-text color="primary">
+          <h3>Estrategias de aprendizaje</h3>
+        </ion-text>
+      </ion-col>
+      <ion-col size="12">
+        <ion-row>
+          <ion-col size="6">
+            <p>1{{')'}} Cognitivas.</p>
+          </ion-col>
+          <ion-col size="6">
+            <ion-input class="form-input" type="text" label="Cognitivas" placeholder=""
+          labelPlacement="floating" fill="outline"(keyup.enter)="pushList($event,'cognitivas')"></ion-input>
+          <p style="padding-left: 20px;">{{estrategiasAprendizaje['cognitivas']}}</p>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col size="12">
+        <ion-row>
+          <ion-col size="6">
+            <p>2{{')'}} Metacognitivas.</p>
+          </ion-col>
+          <ion-col size="6">
+            <ion-input class="form-input" type="text" label="Metacognitivas" placeholder=""
+          labelPlacement="floating" fill="outline"(keyup.enter)="pushList($event,'metaCognitivas')"></ion-input>
+          <p style="padding-left: 20px;">{{estrategiasAprendizaje['metaCognitivas']}}</p>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col size="12">
+        <ion-row>
+          <ion-col size="6">
+            <p>3{{')'}} Estrategia de regulación de recursos:</p>
+          </ion-col>
+          <ion-col size="6">
+            <ion-input class="form-input" type="text" label="Estrategia de regulación de
+            recursos" placeholder=""
+          labelPlacement="floating" fill="outline"(keyup.enter)="pushList($event,'estrategiaRegulacionRecursos')"></ion-input>
+          <p style="padding-left: 20px;">{{estrategiasAprendizaje['estrategiaRegulacionRecursos']}}</p>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col size="12">
+        <ion-row>
+          <ion-col size="6">
+            <p>4{{')'}} Motivacionales.</p>
+          </ion-col>
+          <ion-col size="6">
+            <ion-input class="form-input" type="text" label="Motivacionales" placeholder=""
+          labelPlacement="floating" fill="outline"(keyup.enter)="pushList($event,'motivacionales')"></ion-input>
+          <p style="padding-left: 20px;">{{estrategiasAprendizaje['motivacionales']}}</p>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </form>
+</section>

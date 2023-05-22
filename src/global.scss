@@ -24,6 +24,12 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+ion-card {
+  border-radius: 24px;
+  box-shadow: 0 10px 40px #2932410f;
+}
+
 .backdrop {
   &::part(content) {
     --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
@@ -170,6 +176,10 @@ background-color: #69707a !important;
   font-weight: bold;
   font-size: large;
 }
+.logo-login {
+  height: 14rem;
+  width: 14rem;
+  }
 // Animations that we don't fully understand
 $tile-bg: #cfcfdf;
 .header{

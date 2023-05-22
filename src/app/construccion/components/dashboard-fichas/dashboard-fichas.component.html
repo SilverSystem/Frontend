@@ -1,4 +1,4 @@
-<ion-content [fullscreen] color="medium">
+<ion-content [fullscreen] color="light">
   <ion-grid style="margin-left: 0" class="ion-no-padding">
     <ion-row>
       <ion-col size="12">
@@ -13,7 +13,7 @@
                     </ion-label>
                   </ion-col>
                   <ion-col size="12" size-lg="2.5" style="text-align: end; padding-right: 12px">
-                    <ion-button class="bold" color="primary" placement="left">Nueva Ficha<ion-icon slot="start"
+                    <ion-button class="bold" color="primary" placement="left" (click)="redirect()">Nueva Ficha<ion-icon slot="start"
                         name="add-outline"></ion-icon>
                     </ion-button>
                   </ion-col>
@@ -22,19 +22,19 @@
               <ion-card-content>
                 <form [formGroup]="searchSheetsForm">
                   <ion-row class="ion-justify-content-start" style="margin-bottom: 1.5rem">
-                    <ion-col size="12" sizeLg="3">
+                    <ion-col size="12" sizeLg="3" style="padding-left: 10px; padding-right: 10px;">
                       <ion-input class="form-input" type="text" formControlName="searchNameApprover" [maxlength]="70"
                         label="Nombre del aprobador" labelPlacement="floating" fill="outline"></ion-input>
                     </ion-col>
-                    <ion-col size="12" sizeLg="3">
+                    <ion-col size="12" sizeLg="3" style="padding-left: 10px; padding-right: 10px;">
                       <ion-input class="form-input" type="date" placeholder="" formControlName="searchStartDate"
                         label="Fecha creación desde" labelPlacement="floating" fill="outline"></ion-input>
                     </ion-col>
-                    <ion-col size="12" sizeLg="3">
+                    <ion-col size="12" sizeLg="3" style="padding-left: 10px; padding-right: 10px;">
                       <ion-input class="form-input" type="date" placeholder="" formControlName="searchEndDate"
                         label="Fecha de finalización" labelPlacement="floating" fill="outline"></ion-input>
                     </ion-col>
-                    <ion-col size="12" sizeLg="3">
+                    <ion-col size="12" sizeLg="3" style="padding-left: 10px; padding-right: 10px;">
                       <ion-select label="Estado" multiple="true" placeholder="" interface="popover" fill="outline">
                         <ion-select-option *ngFor="let state of showStates()"
                           [value]="state">{{state}}</ion-select-option>
@@ -45,7 +45,7 @@
                 <ion-row class="ion-align-items-center ion-justify-content-between">
                   <ion-col size="12" sizeLg="3" style="padding-left: 16px">
                     <ion-text color="dark" class="total-sheet">
-                      Total de Fichas: {{0}}
+                      Total de Fichas: {{7}}
                     </ion-text>
                   </ion-col>
                   <ion-col size="12" sizeLg="5">
@@ -64,6 +64,153 @@
                     </ion-row>
                   </ion-col>
                 </ion-row>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-card>
+              <ion-card-header class="ion-no-margin ion-no-padding">
+                <ion-row>
+                  <ion-col size="12" size-lg="3">
+                    <ion-item button lines="none">
+                      <ion-label
+                        color="dark" class="col-headers"
+                        style="padding-left: 18px"
+                      >
+                       Fecha de inicio
+                      </ion-label>
+                      <ion-icon
+                        color="primary"
+                        slot="end"
+                        name="filter-sharp"
+                      ></ion-icon>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col size="12" size-lg="2">
+                    <ion-item button lines="none">
+                      <ion-icon
+                        color="primary"
+                        slot="end"
+                        name="filter-sharp"
+                      ></ion-icon>
+                      <ion-label color="dark" class="col-headers">
+                        Fecha de fin
+                      </ion-label>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col size="12" size-lg="3">
+                    <ion-item button lines="none">
+                      <ion-icon
+                        color="primary"
+                        slot="end"
+                        name="filter-sharp"
+                      ></ion-icon>
+                      <ion-label color="dark" class="col-headers">
+                        Nombre aprobador
+                      </ion-label>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col size="12" size-lg="2">
+                    <ion-item button lines="none">
+                      <ion-icon
+                        color="primary"
+                        slot="end"
+                        name="filter-sharp"
+                      ></ion-icon>
+                      <ion-label color="dark" class="col-headers">
+                        Estado de ficha
+                      </ion-label>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col size="12" size-lg="2">
+                    <ion-item button lines="none">
+                      <ion-label color="dark" class="col-headers ion-text-center">
+                        Ver
+                      </ion-label>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+              </ion-card-header>
+              <ion-card-content class="ion-no-padding">
+                <ion-list>
+                  <ion-row style="width: 100%" *ngFor="let ficha of fichas | paginate: { itemsPerPage: 10, currentPage: p }">
+                    <ion-col size="12">
+                      <ion-item button>
+                        <ion-col
+                          size="12"
+                          size-lg="3"
+                          style="text-align: left; padding-left: 18px"
+                        >
+                          <ion-label>
+                            <p>{{ficha.startDate | date:'EEEE dd MMMM YYYY' | titlecase}}</p>
+                          </ion-label>
+                        </ion-col>
+                        <ion-col
+                          size="12"
+                          size-lg="2"
+                          style="text-align: left; padding-left: 5px"
+                        >
+                          <ion-label>
+                            <p>{{ficha.endDate | date:'EEEE dd MMMM YYYY' | titlecase}}</p>
+                          </ion-label>
+                        </ion-col>
+                        <ion-col
+                          size="12"
+                          size-lg="3"
+                          style="text-align: left; padding-left: 5px"
+                        >
+                          <ion-label>
+                            <p>{{ficha.approverName}}</p>
+                          </ion-label>
+                        </ion-col>
+                        <ion-col
+                          size="12"
+                          size-lg="2"
+                          style="text-align: left; padding-left: 16px"
+                        >
+                          <ion-label  class="ion-text-center">
+                            <ion-text [color]="selectColor(ficha.state)">{{estadosFichas[ficha.state]}}</ion-text>
+                          </ion-label>
+                        </ion-col>
+                        <ion-col
+                          size="12"
+                          size-lg="2"
+                          class="ion-justify-content-center"
+                        >
+                          <ion-row
+                            class="ion-align-items-center"
+                            style="height: 100%"
+                          >
+                            <ion-col
+                              size="12"
+                              style="text-align: center; padding-left: 20px"
+                            >
+                              <ion-button
+                                fill="outline"
+                                tooltip="Ver detalles ficha curricular"
+                                placement="left"
+                                [hideDelay]="0"
+                                color="tertiary"
+                              >
+                                <ion-icon name="eye-outline"></ion-icon>
+                              </ion-button>
+                            </ion-col>
+                          </ion-row>
+                        </ion-col>
+                      </ion-item>
+                    </ion-col>
+                  </ion-row>
+                  <pagination-controls
+                    class="ion-text-right ca-pagination"
+                    (pageChange)="p = $event"
+                    directionIcons="false"
+                    previousLabel="<"
+                    nextLabel=">"
+                  >
+                  </pagination-controls>
+                </ion-list>
               </ion-card-content>
             </ion-card>
           </ion-col>

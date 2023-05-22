@@ -9,10 +9,21 @@ import { ConstruccionPageRoutingModule } from './construccion-routing.module';
 import { ConstruccionPage } from './construccion.page';
 import { LayoutModule } from '../layout/layout.module';
 import { DashboardFichasComponent } from './components/dashboard-fichas/dashboard-fichas.component';
+import { FichaDetailComponent } from './components/ficha-detail/ficha-detail.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { MapaAprendizajeComponent } from './components/mapa-aprendizaje/mapa-aprendizaje.component';
+import { EstrategiasMetodologicasComponent } from './components/estrategias-metodologicas/estrategias-metodologicas.component';
+import { GuiaEvaluacionComponent } from './components/guia-evaluacion/guia-evaluacion.component';
+import { RecursosEspaciosFormacionComponent } from './components/recursos-espacios-formacion/recursos-espacios-formacion.component';
 
-const CONSTUCCION_COMPONENTS = [
+const CONSTRUCCION_COMPONENTS = [
   ConstruccionPage,
-  DashboardFichasComponent
+  DashboardFichasComponent,
+  FichaDetailComponent,
+  MapaAprendizajeComponent,
+  EstrategiasMetodologicasComponent,
+  GuiaEvaluacionComponent,
+  RecursosEspaciosFormacionComponent
 ];
 @NgModule({
   imports: [
@@ -22,8 +33,9 @@ const CONSTUCCION_COMPONENTS = [
     ConstruccionPageRoutingModule,
     LayoutModule,
     ReactiveFormsModule,
-    TooltipModule
+    TooltipModule,
+    NgxPaginationModule
   ],
-  declarations: [...CONSTUCCION_COMPONENTS]
+  declarations: [...CONSTRUCCION_COMPONENTS]
 })
 export class ConstruccionPageModule {}

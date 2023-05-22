@@ -1,0 +1,211 @@
+<ion-row class="ion-align-items-center ion-justify-content-around">
+  <ion-col size="10" sizeLg="10">
+    <h2 style="font-weight: bold">
+      Recursos y espacios de formación y autoformación productiva
+    </h2>
+  </ion-col>
+  <ion-col size="2" sizeLg="1">
+    <ion-button color="dark" (click)="cancel()" fill="clear">
+      <ion-icon name="close-outline"></ion-icon>
+    </ion-button>
+  </ion-col>
+</ion-row>
+<section class="inner-content container">
+  <ion-item>
+    <ion-label>Descripción</ion-label>
+  </ion-item>
+  <form [formGroup]="recursosForm" (ngSubmit)="onSubmit()">
+    <ion-row>
+      <ion-col size="12">
+        <ion-row>
+          <ion-col size="3">
+            <ion-item lines="none">
+              <ion-label>Materiales</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item lines="none">
+              <ion-label>Cantidad</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item lines="none">
+              <ion-label>Unidad de medida</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item lines="none">
+              <ion-label>Especificaciones</ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-row>
+          <ion-col size="3">
+            <ion-item lines="none">
+              <ion-label>Equipos</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item lines="none">
+              <ion-label>Cantidad</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item lines="none">
+              <ion-label>Unidad de medida</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item lines="none">
+              <ion-label>Especificaciones</ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-row>
+          <ion-col size="3">
+            <ion-item lines="none">
+              <ion-label>Programas (software)/Aplicaciones</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item lines="none">
+              <ion-label>Cantidad</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item lines="none">
+              <ion-label>Unidad de medida</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item lines="none">
+              <ion-label>Especificaciones</ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-row>
+          <ion-col size="3">
+            <ion-item lines="none">
+              <ion-label>Herramientas</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item lines="none">
+              <ion-label>Cantidad</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item lines="none">
+              <ion-label>Unidad de medida</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item lines="none">
+              <ion-label>Especificaciones</ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-row>
+          <ion-col size="3">
+            <ion-item lines="none">
+              <ion-label>Maquinarias</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item lines="none">
+              <ion-label>Cantidad</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item lines="none">
+              <ion-label>Unidad de medida</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item lines="none">
+              <ion-label>Especificaciones</ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-row>
+          <ion-col size="3">
+            <ion-item lines="none">
+              <ion-label>Instrumentos</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item lines="none">
+              <ion-label>Cantidad</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item lines="none">
+              <ion-label>Unidad de medida</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item lines="none">
+              <ion-label>Especificaciones</ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-row>
+          <ion-col size="3">
+            <ion-item lines="none">
+              <ion-label>Equipos de Seguridad e Higiene</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item lines="none">
+              <ion-label>Cantidad</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item lines="none">
+              <ion-label>Unidad de medida</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item lines="none">
+              <ion-label>Especificaciones</ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </form>
+</section>
+
+<!-- <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <div formArrayName="dynamicInputs">
+    <div *ngFor="let input of dynamicInputs.controls; let i = index">
+      <input [formControlName]="i" type="text" placeholder="Input {{ i + 1 }}">
+    </div>
+  </div>
+  <button type="button" (click)="addNewInput()">Add Input</button>
+  <button type="submit">Submit</button>
+</form> -->
