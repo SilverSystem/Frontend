@@ -1,5 +1,5 @@
 <ion-grid class="ion-no-padding ion-no-margin">
-  <ion-row style="height: 100vh" class="ion-align-items-center">
+  <ion-row style="height: 100vh" class="ion-align-items-center ion-hide-md-down">
     <ion-col size="9" class="left_container"></ion-col>
     <ion-col size="3">
       <ion-row class="ion-justify-content-center">
@@ -70,6 +70,92 @@
             size="default"
             class="ion-magin-top ion-magin-bottom"
             style="margin-left: 15px;margin-right: 15px"
+          >
+            Ingresar
+          </ion-button>
+          <ion-item lines="none" button style="text-align: center">
+            <ion-label
+              color="primary"
+              [routerLink]="['/login/cambiar-contraseña']"
+              >¿Olvidaste tu contraseña?</ion-label
+            >
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+  <ion-row class="ion-hide-md-up" style="height: 100%">
+    <ion-col
+      size="12"
+      class="ion-justify-content-center ion-align-items-center"
+    >
+      <ion-row class="ion-justify-content-center" style="height: 27vh">
+        <ion-item lines="none">
+          <ion-img [src]="logo" class="logo-login"></ion-img>
+        </ion-item>
+      </ion-row>
+      <ion-row class="ion-align-items-start" style="top: 20%; height: 45vh">
+        <ion-col size="12">
+          <form [formGroup]="loginForm">
+            <ion-item lines="none">
+              <ion-text color="primary" style="text-align: center; width: 100%;">
+                <h1 class="bold">Bienvenido</h1>
+              </ion-text>
+            </ion-item>
+            <div class="inputs-container">
+              <ion-input
+                class="form-input"
+                type="email"
+                formControlName="email"
+                [maxlength] = "70"
+                label="Correo"
+                labelPlacement="floating"
+                fill="outline"
+                [errorText]="showErrors('email')"
+              ></ion-input>
+            </div>
+            <div class="inputs-container password-input">
+              <ion-input
+                class="form-input"
+                [type]="passwordType"
+                formControlName="password"
+                [maxlength]="25"
+                label="Contraseña"
+                labelPlacement="floating"
+                fill="outline"
+                [errorText]="showErrors('password')"
+              ></ion-input>
+              <ion-icon
+                size="large"
+                [name]="passwordShown? 'eye' :'eye-off-outline'"
+                (click)="togglePassword()"
+              ></ion-icon>
+            </div>
+          </form>
+        </ion-col>
+        <ion-row>
+          <ion-col size="12">
+            <ion-item lines="none" *ngIf="isAuthorized">
+              <ion-label color="danger"
+                >Usuario o contraseña incorrectos</ion-label
+              >
+            </ion-item>
+            <ion-progress-bar
+              *ngIf="progressBar"
+              type="determinate"
+              value="0.42"
+              buffer="0.5"
+              color="primary"
+            ></ion-progress-bar>
+          </ion-col>
+        </ion-row>
+        <ion-col size="12" style="margin-top: 40px">
+          <ion-button
+            (click)="onSubmit()"
+            expand="block"
+            [disabled]="loginForm.invalid"
+            size="default"
+            class="ion-magin-top ion-magin-bottom"
           >
             Ingresar
           </ion-button>

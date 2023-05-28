@@ -113,6 +113,7 @@ export class ConfirmPasswordRecoveryComponent  implements OnInit {
     } else {
       return 0;
     }
+    return 0;
   }
   validateExistCode(event) {
     let prev = true;

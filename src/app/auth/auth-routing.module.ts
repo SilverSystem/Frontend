@@ -16,11 +16,11 @@ const routes: Routes = [
         component: LogInComponent
       },
       {
-        path: '/cambiar-contraseña',
+        path: 'cambiar-contraseña',
         component: ChangePasswordComponent
       },
       {
-        path: '/confirmar-recuperacion',
+        path: 'confirmar-recuperacion',
         component: ConfirmPasswordRecoveryComponent
       }
     ]
