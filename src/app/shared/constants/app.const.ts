@@ -16,17 +16,24 @@ export const selectColor = (conditionCA: any) => {
 export const menuRoutes = [
   {
     label: 'Gestión de fichas',
-    route: '/construccion-curricular',
+    route: '/construccion',
     icon: 'options-outline',
-    visibility: ['Constructor_Curricular','Administrador'],
+    visibility: ['Constructor Curricular','Administrador','Presidencia'],
+    accordion: false,
+    accordionData: [],
+  },{
+    label: 'Creacion de usuario',
+    route: '/construccion/registrar-usuario',
+    icon: 'options-outline',
+    visibility: ['Constructor Curricular','Administrador','Presidencia'],
     accordion: false,
     accordionData: [],
   },
   {
     label: 'Mis fichas',
-    route: '/construccion-curricular/mis-fichas',
+    route: '/construccion/mis-fichas',
     icon: 'options-outline',
-    visibility: ['Constructor_Curricular','Administrador'],
+    visibility: ['Constructor Curricular','Administrador','Presidencia'],
     accordion: false,
     accordionData: [],
   },

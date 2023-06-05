@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ConstruccionPage } from './construccion.page';
 import { DashboardFichasComponent } from './components/dashboard-fichas/dashboard-fichas.component';
 import { FichaDetailComponent } from './components/ficha-detail/ficha-detail.component';
+import { SignUpComponent } from '../auth/components/sign-up/sign-up.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
       {
         path: 'fichaNumero',
         component: FichaDetailComponent
+      },
+      {
+        path:'registrar-usuario',
+        component: SignUpComponent
       }
     ]
   }

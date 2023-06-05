@@ -15,6 +15,7 @@ import { MapaAprendizajeComponent } from './components/mapa-aprendizaje/mapa-apr
 import { EstrategiasMetodologicasComponent } from './components/estrategias-metodologicas/estrategias-metodologicas.component';
 import { GuiaEvaluacionComponent } from './components/guia-evaluacion/guia-evaluacion.component';
 import { RecursosEspaciosFormacionComponent } from './components/recursos-espacios-formacion/recursos-espacios-formacion.component';
+import { SignUpComponent } from '../auth/components/sign-up/sign-up.component';
 
 const CONSTRUCCION_COMPONENTS = [
   ConstruccionPage,
@@ -23,7 +24,8 @@ const CONSTRUCCION_COMPONENTS = [
   MapaAprendizajeComponent,
   EstrategiasMetodologicasComponent,
   GuiaEvaluacionComponent,
-  RecursosEspaciosFormacionComponent
+  RecursosEspaciosFormacionComponent,
+  SignUpComponent
 ];
 @NgModule({
   imports: [

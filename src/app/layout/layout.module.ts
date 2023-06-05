@@ -6,10 +6,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MenuComponent } from './menu/menu.component';
 import { ContentLoaderComponent } from './content-loader/content-loader.component';
+import { InDevelopmentComponent } from './in-development/in-development.component';
 const LAYOUT_COMPONENTS = [
   NavbarComponent,
   MenuComponent,
-  ContentLoaderComponent
+  ContentLoaderComponent,
+  InDevelopmentComponent
 ];
 
 

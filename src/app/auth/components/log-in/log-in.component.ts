@@ -88,6 +88,7 @@ export class LogInComponent  implements OnInit {
         },
         error:(err) => {
           console.log(err);
+          this.presentToastSignInFailed(err.message);
         }
       });
     }

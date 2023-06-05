@@ -5,6 +5,7 @@ import { AuthPage } from './auth.page';
 import { LogInComponent } from './components/log-in/log-in.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { ConfirmPasswordRecoveryComponent } from './components/confirm-password-recovery/confirm-password-recovery.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 const routes: Routes = [
   {
@@ -22,7 +23,7 @@ const routes: Routes = [
       {
         path: 'confirmar-recuperacion',
         component: ConfirmPasswordRecoveryComponent
-      }
+      },
     ]
   }
 ];

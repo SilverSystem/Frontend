@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-
+import { InDevelopmentComponent } from './layout/in-development/in-development.component';
+import { AuthGuard } from './core/guards/auth.guard';
 const routes: Routes = [
   {
     path: '',
@@ -13,8 +14,20 @@ const routes: Routes = [
   },
   {
     path: 'construccion',
+    canLoad: [AuthGuard],
     loadChildren: () => import('./construccion/construccion.module').then( m => m.ConstruccionPageModule)
-  }
+  },
+  {
+    path: 'in-progress',
+    loadChildren: () =>
+      import('./layout/layout.module').then(
+        (m) => m.LayoutModule
+      ),
+  },
+  {
+    path: '**',
+    component: InDevelopmentComponent,
+  },
 ];
 
 @NgModule({
