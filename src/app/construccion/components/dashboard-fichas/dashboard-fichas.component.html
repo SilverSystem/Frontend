@@ -134,7 +134,7 @@
                 </ion-row>
               </ion-card-header>
               <ion-card-content class="ion-no-padding">
-                <ion-list>
+                <ion-list *ngIf="fichas.length; else NoFichas">
                   <ion-row style="width: 100%" *ngFor="let ficha of fichas | paginate: { itemsPerPage: 10, currentPage: p }">
                     <ion-col size="12">
                       <ion-item button>
@@ -211,6 +211,11 @@
                   >
                   </pagination-controls>
                 </ion-list>
+                <ng-template #NoFichas>
+                  <ion-text class="ion-text-center">
+                    <h1>¡No hay fichas curriculares creadas aún!</h1>
+                  </ion-text>
+                </ng-template>
               </ion-card-content>
             </ion-card>
           </ion-col>

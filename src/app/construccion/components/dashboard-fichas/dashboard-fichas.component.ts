@@ -19,50 +19,51 @@ export class DashboardFichasComponent  implements OnInit {
     sinAsignar: 'Sin asignar',
     pendientes: 'Pendientes',
   };
-  fichas: Array<any> = [
-    {
-    startDate:new Date(),
-    endDate:'',
-    approverName: 'Andres Jimenez',
-    state: 'sinAsignar'
-  },
-  {
-    startDate:new Date('May 9,2023'),
-    endDate:'',
-    approverName: 'Virginia Pinto',
-    state: 'enCurso'
-  },
-  {
-    startDate:new Date('May 2,2023'),
-    endDate:new Date(),
-    approverName: 'Carlos Avila',
-    state: 'aprobadaCompletamente'
-  },
-  {
-    startDate:new Date('April 22, 2023'),
-    endDate:'',
-    approverName: 'Andreina Bermudez',
-    state: 'enCurso'
-  },
-  {
-    startDate:new Date('March 13, 2023'),
-    endDate:'',
-    approverName: 'Jose Tomas Santos',
-    state: 'conRechazo'
-  },
-  {
-    startDate:new Date('April 27, 2023'),
-    endDate:'',
-    approverName: 'Trinidad Perez',
-    state: 'enCurso'
-  },
-  {
-    startDate:new Date(),
-    endDate:'',
-    approverName: 'Juan Palacios',
-    state: 'pendientes'
-  },
-  ];
+  fichas: Array<any> = [];
+  //[
+  //   fichas: Array<any> ={
+  //   startDate:new Date(),
+  //   endDate:'',
+  //   approverName: 'Andres Jimenez',
+  //   state: 'sinAsignar'
+  // },
+  // {
+  //   startDate:new Date('May 9,2023'),
+  //   endDate:'',
+  //   approverName: 'Virginia Pinto',
+  //   state: 'enCurso'
+  // },
+  // {
+  //   startDate:new Date('May 2,2023'),
+  //   endDate:new Date(),
+  //   approverName: 'Carlos Avila',
+  //   state: 'aprobadaCompletamente'
+  // },
+  // {
+  //   startDate:new Date('April 22, 2023'),
+  //   endDate:'',
+  //   approverName: 'Andreina Bermudez',
+  //   state: 'enCurso'
+  // },
+  // {
+  //   startDate:new Date('March 13, 2023'),
+  //   endDate:'',
+  //   approverName: 'Jose Tomas Santos',
+  //   state: 'conRechazo'
+  // },
+  // {
+  //   startDate:new Date('April 27, 2023'),
+  //   endDate:'',
+  //   approverName: 'Trinidad Perez',
+  //   state: 'enCurso'
+  // },
+  // {
+  //   startDate:new Date(),
+  //   endDate:'',
+  //   approverName: 'Juan Palacios',
+  //   state: 'pendientes'
+  // },
+  // ];
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,

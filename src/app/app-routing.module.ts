@@ -18,13 +18,6 @@ const routes: Routes = [
     loadChildren: () => import('./construccion/construccion.module').then( m => m.ConstruccionPageModule)
   },
   {
-    path: 'in-progress',
-    loadChildren: () =>
-      import('./layout/layout.module').then(
-        (m) => m.LayoutModule
-      ),
-  },
-  {
     path: '**',
     component: InDevelopmentComponent,
   },

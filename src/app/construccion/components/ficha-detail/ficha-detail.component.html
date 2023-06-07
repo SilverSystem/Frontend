@@ -21,10 +21,25 @@
                     </ion-label>
                   </ion-col>
                   <ion-col size="12" sizeLg="6" sizeXl="4">
-                    <ion-button size="default" type="submit" color="primary" expand="block" fill="solid" (click)="newMapaAdrendizaje()">
+                    <ion-button size="default" type="submit" color="primary" expand="block" fill="solid"
+                      (click)="newMapaAdrendizaje()" [disabled]="true">
                       <ion-icon slot="start" name="cloud-download-outline"></ion-icon>
                       Descargar Ficha
                     </ion-button>
+                    <ion-row class="ion-justify-content-center ion-align-items-center">
+                      <ion-col size="12" sizeLg="3">
+                        <ion-button color="danger" expand="block" fill="solid" shape="default">
+                          <ion-icon slot="start" name="close-outline"></ion-icon>
+                          Rechazar
+                        </ion-button>
+                      </ion-col>
+                      <ion-col size="12" sizeLg="3">
+                        <ion-button color="success" expand="block" fill="solid" shape="default">
+                          <ion-icon slot="start" name="checkmark-outline"></ion-icon>
+                          Aceptar
+                        </ion-button>
+                      </ion-col>
+                    </ion-row>
                   </ion-col>
                 </ion-row>
                 <ion-row class="ion-justify-content-center ion-align-items-center">
@@ -85,31 +100,52 @@
                           </div>
                         </ion-col>
                         <ion-col size="12" sizeLg="4">
-                          <ion-input class="form-input" type="text" formControlName="areaOcupacional"
-                            label="Área ocupacional" labelPlacement="floating" fill="outline"></ion-input>
+                          <div class="input-icon-container">
+                            <ion-input class="form-input" type="text" formControlName="areaOcupacional"
+                              label="Área ocupacional" labelPlacement="floating" fill="outline"></ion-input>
+                            <ion-icon name="information-circle-outline" size="large" color="primary"
+                              tooltip="Está conformada por un conjunto de ocupaciones que movilizan capacidades similares o transferibles"
+                              placement="right" [hideDelay]="0"></ion-icon>
+                          </div>
                         </ion-col>
                         <ion-col size="12" sizeLg="4">
-                          <ion-input class="form-input" type="text" formControlName="subAreaOcupacional"
-                            label="Sub Área Ocupacional" labelPlacement="floating" fill="outline"></ion-input>
+                          <div class="input-icon-container">
+                            <ion-input class="form-input" type="text" formControlName="subAreaOcupacional"
+                              label="Sub Área Ocupacional" labelPlacement="floating" fill="outline"></ion-input>
+                            <ion-icon name="information-circle-outline" size="large" color="primary"
+                              tooltip="Subgrupo o subconjunto de ocupaciones con capacidades similares o transferibles"
+                              placement="right" [hideDelay]="0"></ion-icon>
+                          </div>
                         </ion-col>
                         <ion-col size="12" sizeLg="4">
                           <ion-input class="form-input" type="text" formControlName="codigoUc"
                             label="Código de la Unidad Curricular" labelPlacement="floating" fill="outline"></ion-input>
                         </ion-col>
                         <ion-col size="12" sizeLg="4">
-                          <ion-input class="form-input" type="text" formControlName="uc" label="Unidad Curricular"
-                            labelPlacement="floating" fill="outline"></ion-input>
+                          <div class="input-icon-container">
+                            <ion-input class="form-input" type="text" formControlName="uc" label="Unidad Curricular"
+                              labelPlacement="floating" fill="outline"></ion-input>
+                            <ion-icon name="information-circle-outline" size="large" color="primary"
+                              tooltip="Constituyen un conjunto de contenidos integrados que se enfocan en desarrollar habilidades y conocimientos específicos en un área de conocimiento u ocupación"
+                              placement="right" [hideDelay]="0"></ion-icon>
+                          </div>
                         </ion-col>
                         <ion-col size="12" sizeLg="4">
-                          <ion-input class="form-input" type="text" formControlName="tipoUc"
-                            label="Tipo de Unidad Curricular " labelPlacement="floating" fill="outline"></ion-input>
+                          <!-- style="padding-left: 12px; padding-right: 10px;" -->
+                          <ion-select class="form-input" label="Tipo de Unidad Curricular " formControlName="tipoUc"
+                            interface="popover" fill="outline" placeholder="Seleccione una opcion">
+                            <ion-select-option *ngFor="let tipoUc of tiposUc"
+                              [value]="tipoUc">{{tipoUc}}</ion-select-option>
+                          </ion-select>
                         </ion-col>
                         <ion-col size="12" sizeLg="6">
-                          <ion-input class="form-input" type="text" formControlName="totalHorasFormacion" [errorText]="showErrors('totalHorasFormacion')"
-                            label="Total horas de formación" labelPlacement="floating" fill="outline"></ion-input>
+                          <ion-input class="form-input" type="text" formControlName="totalHorasFormacion"
+                            [errorText]="showErrors('totalHorasFormacion')" label="Total horas de formación"
+                            labelPlacement="floating" fill="outline"></ion-input>
                         </ion-col>
                         <ion-col size="12" sizeLg="6">
-                          <ion-input class="form-input" type="text" formControlName="modalidadFormacion" [errorText]="showErrors('modalidadFormacion')"
+                          <ion-input class="form-input" type="text" formControlName="modalidadFormacion"
+                            [errorText]="showErrors('modalidadFormacion')"
                             label="Modalidad de Formación y Autoformación Productiva" labelPlacement="floating"
                             fill="outline"></ion-input>
                         </ion-col>
@@ -119,8 +155,9 @@
                             fill="outline"></ion-textarea>
                         </ion-col>
                         <ion-col size="12" sizeLg="8">
-                          <ion-input class="form-input" type="text" formControlName="dirigidoA" label="Dirigido a" placeholder="Añadir perfil al cual esta dirigido"
-                            labelPlacement="floating" fill="outline" (keyup.enter)="pushList('fichaDetailForm',$event,'dirigidoA')"></ion-input>
+                          <ion-input class="form-input" type="text" formControlName="dirigidoA" label="Dirigido a"
+                            placeholder="Añadir perfil al cual esta dirigido" labelPlacement="floating" fill="outline"
+                            (keyup.enter)="pushList('fichaDetailForm',$event,'dirigidoA')"></ion-input>
                           <p style="padding-left: 20px;" *ngFor="let proposito of mixedList['dirigidoA']">
                             *{{proposito}}</p>
                         </ion-col>
@@ -133,25 +170,28 @@
                             labelPlacement="floating" fill="outline"></ion-textarea>
                         </ion-col>
                         <ion-col size="12" sizeLg="6">
-                          <ion-input class="form-input" type="text" formControlName="ejesTransversales" (keyup.enter)="pushList('fichaDetailForm',$event,'ejesTransversales')"
+                          <ion-input class="form-input" type="text" formControlName="ejesTransversales"
+                            (keyup.enter)="pushList('fichaDetailForm',$event,'ejesTransversales')"
                             label="Ejes transversales de la formación y autoformación, colectiva, integral y permanente "
                             labelPlacement="floating" fill="outline"></ion-input>
-                          <p style="padding-left: 20px;"
-                            *ngFor="let ejeTransversal of mixedList['ejesTransversales']">*{{ejeTransversal}}
+                          <p style="padding-left: 20px;" *ngFor="let ejeTransversal of mixedList['ejesTransversales']">
+                            *{{ejeTransversal}}
                           </p>
                         </ion-col>
                         <ion-col size="12" sizeLg="6">
-                          <ion-input class="form-input" type="text" formControlName="perfilFacilitador" (keyup.enter)="pushList('fichaDetailForm',$event,'perfilFacilitador')"
+                          <ion-input class="form-input" type="text" formControlName="perfilFacilitador"
+                            (keyup.enter)="pushList('fichaDetailForm',$event,'perfilFacilitador')"
                             label="Perfil del facilitadora (o)" labelPlacement="floating" fill="outline"></ion-input>
-                          <p style="padding-left: 20px;"
-                            *ngFor="let perfilFaci of mixedList['perfilFacilitador']">*{{perfilFaci}}</p>
+                          <p style="padding-left: 20px;" *ngFor="let perfilFaci of mixedList['perfilFacilitador']">
+                            *{{perfilFaci}}</p>
                         </ion-col>
                         <ion-col size="12" sizeLg="6">
-                          <ion-input class="form-input" type="text" formControlName="perfilGenericoIngreso" (keyup.enter)="pushList('fichaDetailForm',$event,'perfilGenericoIngreso')"
+                          <ion-input class="form-input" type="text" formControlName="perfilGenericoIngreso"
+                            (keyup.enter)="pushList('fichaDetailForm',$event,'perfilGenericoIngreso')"
                             label="Perfil genérico de ingreso del participante" labelPlacement="floating"
                             fill="outline"></ion-input>
-                          <p style="padding-left: 20px;"
-                            *ngFor="let perfilGene of mixedList['perfilGenericoIngreso']">*{{perfilGene}}</p>
+                          <p style="padding-left: 20px;" *ngFor="let perfilGene of mixedList['perfilGenericoIngreso']">
+                            *{{perfilGene}}</p>
                         </ion-col>
                         <ion-col size="12" sizeLg="6">
                           <ion-input class="form-input" type="text" formControlName="consideracionesPerfilGenerico"
@@ -159,7 +199,8 @@
                             labelPlacement="floating" fill="outline"></ion-input>
                         </ion-col>
                         <ion-col size="12">
-                          <ion-input class="form-input" type="text" formControlName="perfilEgreso" (keyup.enter)="pushList('fichaDetailForm',$event,'perfilEgreso')"
+                          <ion-input class="form-input" type="text" formControlName="perfilEgreso"
+                            (keyup.enter)="pushList('fichaDetailForm',$event,'perfilEgreso')"
                             label="Perfil de egreso de la Unidad Curricular (Competencia General)"
                             labelPlacement="floating" fill="outline"></ion-input>
                           <p style="padding-left: 20px;margin-bottom: 10px;"
@@ -170,42 +211,177 @@
                     </ion-col>
                   </ion-row>
                 </form>
-                  <ion-row *ngIf="actualSegment === 'Mapa de aprendizaje'">
-                    <ion-col size="12">
-                      <form [formGroup]="fichaDetailForm">
-                        <ion-row>
-                          <ion-col size="6">
-                            <ion-input class="form-input" type="text" formControlName="uc" label="Unidad Curricular" readonly="true"
-                            labelPlacement="stacked" fill="outline"></ion-input>
-                          </ion-col>
-                          <ion-col size="3">
-                            <ion-input class="form-input" type="text" formControlName="tipoUc" readonly="true"
-                            label="Tipo de Unidad Curricular " labelPlacement="stacked" fill="outline"></ion-input>
-                          </ion-col>
-                          <ion-col size="3">
-                            <ion-input class="form-input" type="text" formControlName="codigoUc" readonly="true"
+                <ion-row *ngIf="actualSegment === 'Mapa de aprendizaje'">
+                  <ion-col size="12">
+                    <form [formGroup]="fichaDetailForm">
+                      <ion-row>
+                        <ion-col size="6">
+                          <ion-input class="form-input" type="text" formControlName="uc" label="Unidad Curricular"
+                            readonly="true" labelPlacement="stacked" fill="outline"></ion-input>
+                        </ion-col>
+                        <ion-col size="3">
+                          <ion-select class="form-input" label="Tipo de Unidad Curricular " formControlName="tipoUc"
+                            interface="popover" fill="outline" placeholder="Seleccione una opcion">
+                            <ion-select-option *ngFor="let tipoUc of tiposUc"
+                              [value]="tipoUc">{{tipoUc}}</ion-select-option>
+                          </ion-select>
+                        </ion-col>
+                        <ion-col size="3">
+                          <ion-input class="form-input" type="text" formControlName="codigoUc" readonly="true"
                             label="Código de la Unidad Curricular" labelPlacement="stacked" fill="outline"></ion-input>
-                          </ion-col>
-                        </ion-row>
-                      </form>
-                      <h3>si funca we</h3>
-                    </ion-col>
-                  </ion-row>
-                  <ion-row *ngIf="actualSegment === 'Recursos y espacios de formación y autoformación productiva'">
-                    <ion-col size="12">
-                      <h3>si funca we 2</h3>
-                    </ion-col>
-                  </ion-row>
-                  <ion-row *ngIf="actualSegment === 'Colectivo de la mesa de evaluación, construcción y desarrollo curricular permanente'">
-                    <ion-col size="12">
-                      <h3>si funca we 3</h3>
-                    </ion-col>
-                  </ion-row>
-                  <ion-row *ngIf="actualSegment === 'Recursos educativos digitales'">
-                    <ion-col size="12">
-                      <h3>si funca we 4</h3>
-                    </ion-col>
-                  </ion-row>
+                        </ion-col>
+                      </ion-row>
+                    </form>
+                    <ion-button size="default" type="submit" color="primary" expand="block" fill="solid"
+                      (click)="newMapaAdrendizaje()">
+                      <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+                      Nuevo Mapa de Aprendizaje
+                    </ion-button>
+                    <ion-row *ngFor="let mapa of mapasAprendizaje;let i = index">
+                      <ion-col size="12">
+                        <ion-card>
+                          <ion-card-header>
+                            <ion-card-title>Mapa de Aprendizaje (Programa de Estudios)</ion-card-title>
+                          </ion-card-header>
+                          <ion-card-content>
+                            <ion-row>
+                              <ion-col size="12">
+                                <ion-card>
+                                  <ion-card-content>
+                                    <ion-row>
+                                      <ion-col size="9">
+                                        <ion-input class="form-input" type="text" [value]="mapa.logroParticipante"
+                                          readonly="true" [label]="(i+1) + '. Realización o logro del participante'"
+                                          labelPlacement="floating" fill="outline"></ion-input>
+                                      </ion-col>
+                                      <ion-col size="3">
+                                        <ion-input class="form-input" type="text"
+                                          [value]="mapa.horasTeoricas + '/' + mapa.horasPracticas" readonly="true"
+                                          label="Horas Teórico/Práctico" labelPlacement="floating"
+                                          fill="outline"></ion-input>
+                                      </ion-col>
+                                    </ion-row>
+                                  </ion-card-content>
+                                </ion-card>
+                              </ion-col>
+                            </ion-row>
+                            <ion-row>
+                              <ion-col size="12">
+                                <ion-card>
+                                  <ion-card-content>
+                                    <ion-row>
+                                      <ion-col size="12" sizeLg="3">
+                                        <ion-card>
+                                          <ion-card-content>
+                                            <ion-text color="primary">
+                                              <h3>Ejes Temáticos (Unidades de aprendizaje)</h3>
+                                            </ion-text>
+                                            <p style="font-weight: bold; margin-top: 10px; margin-bottom: 10px;">
+                                              {{i+1}}. {{mapa.ejeTematico}}</p>
+                                            <div *ngFor="let eje of objKeys(mapa.detallesEjeTematico);let j = index"
+                                              class="border-details">
+                                              <p style="padding-left: 20px;">{{i+1}}.{{j+1}}. {{replaced(eje)}}</p>
+                                              <p style="padding-left: 10px;"
+                                                *ngFor="let dotType of mapa.detallesEjeTematico[eje]"><span>*</span>
+                                                {{dotType}}</p>
+                                            </div>
+                                          </ion-card-content>
+                                        </ion-card>
+                                      </ion-col>
+                                      <ion-col size="12" sizeLg="5">
+                                        <ion-card>
+                                          <ion-card-content>
+                                            <ion-text color="primary">
+                                              <h3>Evidencias de Desempeño</h3>
+                                            </ion-text>
+                                            <ion-row>
+                                              <ion-col size="4" class="border-details">
+                                                <ion-text color="primary">
+                                                  <h3>Observación Directa</h3>
+                                                </ion-text>
+                                                <p *ngFor="let obs of mapa.evidenciasDesempeno.observacionDirecta">
+                                                  {{obs}}</p>
+                                              </ion-col>
+                                              <ion-col size="3" class="border-details">
+                                                <ion-text color="primary">
+                                                  <h3>Producto</h3>
+                                                </ion-text>
+                                                <p *ngFor="let product of mapa.evidenciasDesempeno.producto">{{product}}
+                                                </p>
+                                              </ion-col>
+                                              <ion-col size="5" class="border-details">
+                                                <ion-text color="primary">
+                                                  <h3>Conocimiento y Comprensión</h3>
+                                                </ion-text>
+                                                <p *ngFor="let con of mapa.evidenciasDesempeno.conocimiento">{{con}}</p>
+                                              </ion-col>
+                                            </ion-row>
+                                          </ion-card-content>
+                                        </ion-card>
+                                      </ion-col>
+                                      <ion-col size="12" sizeLg="4">
+                                        <ion-card>
+                                          <ion-card-content>
+                                            <ion-row>
+                                              <ion-col size="12" sizeLg="7">
+                                                <ion-text color="primary" style="text-align: center;">
+                                                  <h3>Criterios de Desempeño</h3>
+                                                </ion-text>
+                                              </ion-col>
+                                              <ion-col size="12" sizeLg="5">
+                                                <ion-text color="primary" style="text-align: center;">
+                                                  <h3>Lapso de ejecución</h3>
+                                                </ion-text>
+                                              </ion-col>
+                                              <ion-col size="12">
+                                                <div *ngFor="let criterio of mapa.criteriosDesempeno;let k = index"
+                                                  style="width: 100%;">
+                                                  <ion-row>
+                                                    <ion-col size="6">
+                                                      <p style="padding-left: 20px;">{{criterio}}</p>
+                                                    </ion-col>
+                                                    <ion-col size="6" style="text-align: center;">
+                                                      <p style="padding-left: 20px;">{{mapa.lapsoEjecucion[k]}}</p>
+                                                    </ion-col>
+                                                  </ion-row>
+                                                </div>
+                                              </ion-col>
+                                            </ion-row>
+                                          </ion-card-content>
+                                        </ion-card>
+                                      </ion-col>
+                                    </ion-row>
+                                  </ion-card-content>
+                                </ion-card>
+                              </ion-col>
+                            </ion-row>
+                          </ion-card-content>
+                        </ion-card>
+                        <ion-button size="default" type="submit" color="primary" expand="block" fill="solid"
+                      (click)="newEstrategiaMetodologica()">
+                      <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+                      Nueva Estrategia Metodologica
+                    </ion-button>
+                      </ion-col>
+                    </ion-row>
+                  </ion-col>
+                </ion-row>
+                <ion-row *ngIf="actualSegment === 'Recursos y espacios de formación y autoformación productiva'">
+                  <ion-col size="12">
+                    <h3>si funca we 2</h3>
+                  </ion-col>
+                </ion-row>
+                <ion-row
+                  *ngIf="actualSegment === 'Colectivo de la mesa de evaluación, construcción y desarrollo curricular permanente'">
+                  <ion-col size="12">
+                    <h3>si funca we 3</h3>
+                  </ion-col>
+                </ion-row>
+                <ion-row *ngIf="actualSegment === 'Recursos educativos digitales'">
+                  <ion-col size="12">
+                    <h3>si funca we 4</h3>
+                  </ion-col>
+                </ion-row>
               </ion-card-content>
             </ion-card>
           </ion-col>

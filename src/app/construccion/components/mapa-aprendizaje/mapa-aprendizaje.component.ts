@@ -14,7 +14,7 @@ export class MapaAprendizajeComponent implements OnInit {
   observacionDirecta = [];
   producto = [];
   conocimiento = [];
-  lapsos= [];
+  lapsos = [];
   @Input() numeration: number;
   constructor(
     private toastController: ToastController,
@@ -26,46 +26,81 @@ export class MapaAprendizajeComponent implements OnInit {
     this.setup();
   }
 
-  setup(){
-    this.mapaForm= this.formBuilder.group({
+  setup() {
+    this.mapaForm = this.formBuilder.group({
       logroParticipante: [],
-      horasTeoricas:[],
-      horasPracticas:[],
-      ejeTematico:[],
-      criteriosDesempeno:[],
-      evidenciasDesempeno:[],
-      lapsoEjecucion:[]
+      horasTeoricas: [],
+      horasPracticas: [],
+      ejeTematico: [],
+      criteriosDesempeno: [],
+      evidenciasDesempeno: [],
+      lapsoEjecucion: []
     });
   }
   cancel() {
     this.modalController.dismiss();
- }
- mainSubType(event: any){
-  console.log(event.target.value);
-  const userInput = event.target.value;
-  if(userInput !== ''){
-    this.bulletPoints[userInput] = [];
-    event.target.value = '';
   }
- }
- objKeys(){
-  return Object.keys(this.bulletPoints);
- }
- dotSubType(event: any, field: string){
-  console.log(event.target.value);
-  const userInput = event.target.value;
-  if(userInput !== ''){
-    this.bulletPoints[field] = [...this.bulletPoints[field],userInput] ;
-    event.target.value = '';
+  mainSubType(event: any) {
+    console.log(event.target.value);
+    const userInput = event.target.value;
+    if (userInput !== '') {
+      this.bulletPoints[`${userInput}_${this.objKeys().length+1}`] = [];
+      event.target.value = '';
+    }
   }
- }
- pushList(event: any, field: string){
-  console.log(event.target.value);
-  const userInput = event.target.value;
-  if(userInput !== ''){
-    this[field] = [...this[field],userInput] ;
-    event.target.value = '';
+  objKeys() {
+    return Object.keys(this.bulletPoints);
+  }
+  dotSubType(event: any, field: string) {
+    console.log(event.target.value);
+    const userInput = event.target.value;
+    if (userInput !== '') {
+      this.bulletPoints[field] = [...this.bulletPoints[field], userInput];
+      event.target.value = '';
+    }
+  }
+  pushList(event: any, field: string) {
+    console.log(event.target.value);
+    const userInput = event.target.value;
+    if (userInput !== '') {
+      this[field] = [...this[field], userInput];
+      event.target.value = '';
 
+    }
   }
-}
+  replaced(subType: string){
+    const copy = subType;
+    return copy.replace(/_[0-9]/,'');
+  }
+  async presentAproveReqToast() {
+    const toast = await this.toastController.create({
+      message: 'Mapa de aprendizaje creado exitosamente',
+      icon: 'checkmark-circle',
+      position: 'bottom',
+      color: 'success',
+      duration: 2000,
+    });
+    toast.present();
+  }
+  submit(){
+    const form = this.mapaForm.value;
+    console.log('Esto termino siendo el form',form);
+    const post = {
+      logroParticipante: form.logroParticipante,
+      horasTeoricas: form.horasTeoricas,
+      horasPracticas: form.horasPracticas,
+      ejeTematico: form.ejeTematico,
+      detallesEjeTematico: this.bulletPoints,
+      criteriosDesempeno: this.criterios,
+      evidenciasDesempeno: {
+        observacionDirecta:this.observacionDirecta,
+        producto:this.producto,
+        conocimiento:this.conocimiento
+      },
+      lapsoEjecucion: this.lapsos
+    };
+    console.log('Esto termino siendo el post',post);
+    this.presentAproveReqToast();
+    this.modalController.dismiss(post);
+  }
 }

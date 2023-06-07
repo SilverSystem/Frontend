@@ -38,7 +38,7 @@ export class AuthService {
     const mainUrl = this.document.location.href.split('/')[3];
     const url = this.document.location.href.split('/')[4];
     const getPromise = new Promise<any>((resolve) => {
-      const obtainedUserType = JSON.parse(localStorage.getItem('currentSession') || '');
+      const obtainedUserType = JSON.parse(localStorage.getItem('currentSession') || '{}');
       if (obtainedUserType === '' || !obtainedUserType.access_token) {
         return resolve({ path: '/login', allowed: false });
       }

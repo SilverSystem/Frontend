@@ -1,94 +1,139 @@
 <ion-row class="ion-align-items-center ion-justify-content-around">
-  <ion-col size="10" sizeLg="10">
-    <h2 style="font-weight: bold">
+  <ion-col size="10">
+    <h2 style="font-weight: bold; padding-left: 30px;">
       Mapa de Aprendizaje (Programa de Estudios)
     </h2>
   </ion-col>
-  <ion-col size="2" sizeLg="1">
-    <ion-button color="dark" (click)="cancel()" fill="clear">
+  <ion-col size="1">
+    <ion-button size="default" type="submit" (click)="submit()" color="primary" expand="block" fill="solid">
+      <ion-icon slot="end" name="close-outline"></ion-icon>
+      Guardar
+    </ion-button>
+  </ion-col>
+  <ion-col size="1">
+    <ion-button size="default" color="dark" (click)="cancel()" expand="block" fill="clear">
       <ion-icon name="close-outline"></ion-icon>
     </ion-button>
   </ion-col>
 </ion-row>
 <section class="inner-content container">
   <form [formGroup]="mapaForm">
-    <ion-row>
-      <ion-col size="6">
-        <ion-input class="form-input" type="text" formControlName="logroParticipante"
-      [label]="numeration + '. Realización o logro del participante'" labelPlacement="floating" fill="outline"></ion-input>
-      </ion-col>
-      <ion-col size="3">
-        <ion-input class="form-input" type="text" formControlName="horasTeoricas"
-      label="Horas Teóricas" labelPlacement="floating" fill="outline"></ion-input>
-      </ion-col>
-      <ion-col size="3">
-        <ion-input class="form-input" type="text" formControlName="horasPracticas"
-      label="Horas Prácticas" labelPlacement="floating" fill="outline"></ion-input>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="12" sizeLg="3">
-        <ion-text color="primary">
-          <h3>Ejes Temáticos (Unidades de aprendizaje)</h3>
-        </ion-text>
-        <ion-input class="form-input" type="text" formControlName="ejeTematico" label="Ejes Temáticos" placeholder=""
-          labelPlacement="floating" fill="outline"></ion-input>
-          <p style="font-weight: bold;" *ngIf="mapaForm.controls['ejeTematico'].value !== '' && mapaForm.controls['ejeTematico'].value !== null">{{numeration}}. {{mapaForm.controls['ejeTematico'].value}}</p>
-          <ion-input type="text" fill="outline" placeholder="Subtemas" labelPlacement="floating" label="Ingresa un Subtema" (keyup.enter)="mainSubType($event)"></ion-input>
-          <ion-item style="margin-bottom: 10px;"></ion-item>
-          <div *ngFor="let eje of objKeys();let i = index" class="border-details">
-            <p style="padding-left: 20px;">{{numeration}}.{{i+1}}. {{eje}}</p>
-            <ion-input class="form-input" type="text" label="Puntos claves del subtema" placeholder=""
-              labelPlacement="floating" fill="outline" (keyup.enter)="dotSubType($event,eje)"></ion-input>
-            <p *ngFor="let dotType of bulletPoints[eje]">* {{dotType}}</p>
-          </div>
-      </ion-col>
-      <ion-col size="12" sizeLg="3">
-        <ion-text color="primary">
-          <h3>Criterios de Desempeño</h3>
-        </ion-text>
-        <ion-input class="form-input" type="text" formControlName="criteriosDesempeno" label="Criterios de Desempeño" placeholder=""
-          labelPlacement="floating" fill="outline" (keyup.enter)="pushList($event,'criterios')"></ion-input>
-          <p style="padding-left: 20px;" *ngFor="let criterio of criterios">{{criterio}}</p>
-      </ion-col>
-      <ion-col size="12" sizeLg="5">
-        <ion-text color="primary">
-          <h3>Evidencias de Desempeño</h3>
-        </ion-text>
+    <ion-card>
+      <ion-card-content>
         <ion-row>
-          <ion-col size="4" class="border-details">
-            <ion-text color="primary">
-              <h3>Observación Directa</h3>
-            </ion-text>
-            <ion-input class="form-input" type="text" label="Observación Directa" placeholder=""
-          labelPlacement="floating" fill="outline" (keyup.enter)="pushList($event,'observacionDirecta')"></ion-input>
-          <p style="padding-left: 20px;" *ngFor="let obs of observacionDirecta">{{obs}}</p>
+          <ion-col size="6">
+            <ion-input class="form-input" type="text" formControlName="logroParticipante"
+          [label]="numeration + '. Realización o logro del participante'" labelPlacement="floating" fill="outline"></ion-input>
           </ion-col>
-          <ion-col size="4" class="border-details">
-            <ion-text color="primary">
-              <h3>Producto</h3>
-            </ion-text>
-            <ion-input class="form-input" type="text" label="Producto" placeholder=""
-          labelPlacement="floating" fill="outline" (keyup.enter)="pushList($event,'producto')"></ion-input>
-          <p style="padding-left: 20px;" *ngFor="let product of producto">{{product}}</p>
+          <ion-col size="3">
+            <ion-input class="form-input" type="number" formControlName="horasTeoricas"
+          label="Horas Teóricas" labelPlacement="floating" fill="outline"></ion-input>
           </ion-col>
-          <ion-col size="4" class="border-details">
-            <ion-text color="primary">
-              <h3>Conocimiento y Comprensión</h3>
-            </ion-text>
-            <ion-input class="form-input" type="text" label="Conocimiento y Comprensión" placeholder=""
-          labelPlacement="floating" fill="outline" (keyup.enter)="pushList($event,'conocimiento')"></ion-input>
-          <p style="padding-left: 20px;" *ngFor="let con of conocimiento">{{con}}</p>
+          <ion-col size="3">
+            <ion-input class="form-input" type="number" formControlName="horasPracticas"
+          label="Horas Prácticas" labelPlacement="floating" fill="outline"></ion-input>
           </ion-col>
         </ion-row>
-      </ion-col>
-      <ion-col size="12" sizeLg="1">
-        <ion-text color="primary">
-          <h3>Lapso de ejecución</h3>
-        </ion-text>
-        <ion-input class="form-input" type="number" formControlName="lapsoEjecucion" label="Lapso de ejecución" placeholder=""
-          labelPlacement="floating" fill="outline" (keyup.enter)="pushList($event,'lapsos')"></ion-input>
-          <p style="padding-left: 20px;" *ngFor="let lapso of lapsos">{{lapso}}</p>
+      </ion-card-content>
+    </ion-card>
+    <ion-row>
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-content>
+            <ion-row>
+              <ion-col size="12" sizeLg="3">
+                <ion-card>
+                  <ion-card-content>
+                      <ion-text color="primary">
+                        <h3>Ejes Temáticos (Unidades de aprendizaje)</h3>
+                      </ion-text>
+                      <ion-input class="form-input" type="text" formControlName="ejeTematico" label="Eje Temático" placeholder=""
+                        labelPlacement="floating" fill="outline"></ion-input>
+                        <p style="font-weight: bold; margin-top: 10px; margin-bottom: 10px;" *ngIf="mapaForm.controls['ejeTematico'].value !== '' && mapaForm.controls['ejeTematico'].value !== null">{{numeration}}. {{mapaForm.controls['ejeTematico'].value}}</p>
+                        <ion-input type="text" fill="outline" placeholder="Subtemas" labelPlacement="floating" label="Ingresa un Subtema" (keyup.enter)="mainSubType($event)"></ion-input>
+                        <ion-item style="margin-bottom: 10px;"></ion-item>
+                        <div *ngFor="let eje of objKeys();let i = index" class="border-details">
+                          <p style="padding-left: 20px;">{{numeration}}.{{i+1}}. {{replaced(eje)}}</p>
+                          <ion-input class="form-input" type="text" label="Puntos claves del subtema" placeholder=""
+                            labelPlacement="floating" fill="outline" (keyup.enter)="dotSubType($event,eje)"></ion-input>
+                          <p style="padding-left: 10px;" *ngFor="let dotType of bulletPoints[eje]"><span>*</span> {{dotType}}</p>
+                        </div>
+                      </ion-card-content>
+                    </ion-card>
+                  </ion-col>
+                <ion-col size="12" sizeLg="5">
+                <ion-card>
+                  <ion-card-content>
+                      <ion-text color="primary">
+                        <h3>Evidencias de Desempeño</h3>
+                      </ion-text>
+                      <ion-row>
+                        <ion-col size="4" class="border-details">
+                          <ion-text color="primary">
+                            <h3>Observación Directa</h3>
+                          </ion-text>
+                          <ion-input class="form-input" type="text" label="Observación Directa" placeholder=""
+                        labelPlacement="floating" fill="outline" (keyup.enter)="pushList($event,'observacionDirecta')"></ion-input>
+                        <p *ngFor="let obs of observacionDirecta">{{obs}}</p>
+                        </ion-col>
+                        <ion-col size="3" class="border-details">
+                          <ion-text color="primary">
+                            <h3>Producto</h3>
+                          </ion-text>
+                          <ion-input class="form-input" type="text" label="Producto" placeholder=""
+                        labelPlacement="floating" fill="outline" (keyup.enter)="pushList($event,'producto')"></ion-input>
+                        <p *ngFor="let product of producto">{{product}}</p>
+                        </ion-col>
+                        <ion-col size="5" class="border-details">
+                          <ion-text color="primary">
+                            <h3>Conocimiento y Comprensión</h3>
+                          </ion-text>
+                          <ion-input class="form-input" type="text" label="Conocimiento y Comprensión" placeholder=""
+                        labelPlacement="floating" fill="outline" (keyup.enter)="pushList($event,'conocimiento')"></ion-input>
+                        <p *ngFor="let con of conocimiento">{{con}}</p>
+                        </ion-col>
+                      </ion-row>
+                    </ion-card-content>
+                  </ion-card>
+                </ion-col>
+                <ion-col size="12" sizeLg="4">
+                  <ion-card>
+                    <ion-card-content>
+                      <ion-row>
+                        <ion-col size="12" sizeLg="7">
+                          <ion-text color="primary" style="text-align: center;">
+                            <h3>Criterios de Desempeño</h3>
+                          </ion-text>
+                          <ion-input class="form-input" type="text" formControlName="criteriosDesempeno" label="Criterios de Desempeño" placeholder=""
+                            labelPlacement="floating" fill="outline" (keyup.enter)="pushList($event,'criterios')"></ion-input>
+                        </ion-col>
+                        <ion-col size="12" sizeLg="5">
+                          <ion-text color="primary" style="text-align: center;">
+                            <h3>Lapso de ejecución</h3>
+                          </ion-text>
+                          <ion-input class="form-input" type="number" formControlName="lapsoEjecucion" label="Lapso de ejecución" placeholder=""
+                            labelPlacement="floating" fill="outline" (keyup.enter)="pushList($event,'lapsos')"></ion-input>
+                            <!-- <p style="padding-left: 20px;" *ngFor="let lapso of lapsos">{{lapso}}</p> -->
+                        </ion-col>
+                        <ion-col size="12">
+                          <div *ngFor="let criterio of criterios;let i = index" style="width: 100%;">
+                            <ion-row>
+                              <ion-col size="6">
+                                <p style="padding-left: 20px;">{{criterio}}</p>
+                              </ion-col>
+                              <ion-col size="6" style="text-align: center;">
+                                <p style="padding-left: 20px;">{{lapsos[i]}}</p>
+                              </ion-col>
+                            </ion-row>
+                          </div>
+                        </ion-col>
+                      </ion-row>
+                    </ion-card-content>
+                  </ion-card>
+                </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
       </ion-col>
     </ion-row>
 
