@@ -357,11 +357,161 @@
                             </ion-row>
                           </ion-card-content>
                         </ion-card>
+                        <ion-card *ngIf="estrategiasMetodologicas[i]">
+                          <ion-card-header>
+                            <ion-card-title>Estrategias Metodológicas, Didácticas y Pedagógicas</ion-card-title>
+                          </ion-card-header>
+                          <ion-card-content>
+                            <ion-row>
+                              <ion-col size="4" class="border-details">
+                                <ion-card>
+                                  <ion-card-header>
+                                    <ion-card-title>
+                                      <ion-text color="primary">
+                                        <h3>Estrategias de Enseñanza</h3>
+                                      </ion-text>
+                                    </ion-card-title>
+                                  </ion-card-header>
+                                  <ion-card-content>
+                                    <ion-input class="form-input" type="text" label="Estrategias de Enseñanza"
+                                      placeholder="" readonly="true" labelPlacement="floating"
+                                      fill="outline"></ion-input>
+                                    <p style="padding-left: 20px;"
+                                      *ngFor="let obs of estrategiasMetodologicas[i].estrategiasdeEnsenanza">* {{obs}}
+                                    </p>
+                                  </ion-card-content>
+                                </ion-card>
+                              </ion-col>
+                              <ion-col size="4" class="border-details">
+                                <ion-card>
+                                  <ion-card-header>
+                                    <ion-card-title>
+                                      <ion-text color="primary">
+                                        <h3>Medios Instruccionales</h3>
+                                      </ion-text>
+                                    </ion-card-title>
+                                  </ion-card-header>
+                                  <ion-card-content>
+                                    <ion-input class="form-input" type="text" label="Medios Instruccionales"
+                                      placeholder="" readonly="true" labelPlacement="floating"
+                                      fill="outline"></ion-input>
+                                    <p style="padding-left: 20px;"
+                                      *ngFor="let product of estrategiasMetodologicas[i].mediosInstruccionales">*
+                                      {{product}}</p>
+                                  </ion-card-content>
+                                </ion-card>
+                              </ion-col>
+                              <ion-col size="4" class="border-details">
+                                <ion-card>
+                                  <ion-card-header>
+                                    <ion-card-title>
+                                      <ion-text color="primary">
+                                        <h3>Técnicas Instruccionales</h3>
+                                      </ion-text>
+                                    </ion-card-title>
+                                  </ion-card-header>
+                                  <ion-card-content>
+                                    <ion-input class="form-input" type="text" label="Técnicas Instruccionales"
+                                      placeholder="" readonly="true" labelPlacement="floating"
+                                      fill="outline"></ion-input>
+                                    <p style="padding-left: 20px;"
+                                      *ngFor="let con of estrategiasMetodologicas[i].tecnicasInstruccionales">* {{con}}
+                                    </p>
+                                  </ion-card-content>
+                                </ion-card>
+                              </ion-col>
+                            </ion-row>
+                          </ion-card-content>
+                        </ion-card>
+                        <ion-row *ngIf="estrategiasMetodologicas[i]">
+                          <ion-col size="12">
+                            <ion-card>
+                              <ion-card-header>
+                                <ion-card-title>
+                                  <ion-text color="primary">
+                                    <h3>Estrategias de aprendizaje</h3>
+                                  </ion-text>
+                                </ion-card-title>
+                              </ion-card-header>
+                              <ion-card-content>
+                                <ion-row>
+                                  <ion-col size="12">
+                                    <ion-card>
+                                      <ion-card-content>
+                                        <ion-row class="ion-align-items-center">
+                                          <ion-col size="3">
+                                            <p>1{{')'}} Cognitivas.</p>
+                                          </ion-col>
+                                          <ion-col size="9">
+                                            <ion-textarea [autoGrow]="true" readonly="true"
+                                              [value]="estrategiasMetodologicas[i].cognitivas" label="Cognitivas"
+                                              labelPlacement="floating" fill="outline"></ion-textarea>
+                                          </ion-col>
+                                        </ion-row>
+                                      </ion-card-content>
+                                    </ion-card>
+                                  </ion-col>
+                                  <ion-col size="12">
+                                    <ion-card>
+                                      <ion-card-content>
+                                        <ion-row class="ion-align-items-center">
+                                          <ion-col size="3">
+                                            <p>2{{')'}} Metacognitivas.</p>
+                                          </ion-col>
+                                          <ion-col size="9">
+                                            <ion-textarea [autoGrow]="true" readonly="true"
+                                              [value]="estrategiasMetodologicas[i].metaCognitivas"
+                                              label="Metacognitivas" labelPlacement="floating"
+                                              fill="outline"></ion-textarea>
+                                          </ion-col>
+                                        </ion-row>
+                                      </ion-card-content>
+                                    </ion-card>
+                                  </ion-col>
+                                  <ion-col size="12">
+                                    <ion-card>
+                                      <ion-card-content>
+                                        <ion-row class="ion-align-items-center">
+                                          <ion-col size="3">
+                                            <p>3{{')'}} Estrategia de regulación de recursos:</p>
+                                          </ion-col>
+                                          <ion-col size="9">
+                                            <ion-textarea [autoGrow]="true" readonly="true"
+                                              [value]="estrategiasMetodologicas[i].estrategiasRegulacionRecursos"
+                                              label="Estrategia de regulación de recursos" labelPlacement="floating"
+                                              fill="outline"></ion-textarea>
+                                          </ion-col>
+                                        </ion-row>
+                                      </ion-card-content>
+                                    </ion-card>
+                                  </ion-col>
+                                  <ion-col size="12">
+                                    <ion-card>
+                                      <ion-card-content>
+                                        <ion-row class="ion-align-items-center">
+                                          <ion-col size="3">
+                                            <p>4{{')'}} Motivacionales.</p>
+                                          </ion-col>
+                                          <ion-col size="9">
+                                            <ion-textarea [autoGrow]="true" readonly="true"
+                                              [value]="estrategiasMetodologicas[i].motivacionales"
+                                              label="Motivacionales" labelPlacement="floating"
+                                              fill="outline"></ion-textarea>
+                                          </ion-col>
+                                        </ion-row>
+                                      </ion-card-content>
+                                    </ion-card>
+                                  </ion-col>
+                                </ion-row>
+                              </ion-card-content>
+                            </ion-card>
+                          </ion-col>
+                        </ion-row>
                         <ion-button size="default" type="submit" color="primary" expand="block" fill="solid"
-                      (click)="newEstrategiaMetodologica()">
-                      <ion-icon slot="start" name="add-circle-outline"></ion-icon>
-                      Nueva Estrategia Metodologica
-                    </ion-button>
+                          (click)="newEstrategiaMetodologica()">
+                          <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+                          Nueva Estrategia Metodologica
+                        </ion-button>
                       </ion-col>
                     </ion-row>
                   </ion-col>

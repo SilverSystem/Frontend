@@ -28,13 +28,13 @@ export class MapaAprendizajeComponent implements OnInit {
 
   setup() {
     this.mapaForm = this.formBuilder.group({
-      logroParticipante: [],
-      horasTeoricas: [],
-      horasPracticas: [],
-      ejeTematico: [],
-      criteriosDesempeno: [],
-      evidenciasDesempeno: [],
-      lapsoEjecucion: []
+      logroParticipante: [null],
+      horasTeoricas: [null],
+      horasPracticas: [null],
+      ejeTematico: [null],
+      criteriosDesempeno: [null],
+      evidenciasDesempeno: [null],
+      lapsoEjecucion: [null]
     });
   }
   cancel() {
@@ -72,7 +72,7 @@ export class MapaAprendizajeComponent implements OnInit {
     const copy = subType;
     return copy.replace(/_[0-9]/,'');
   }
-  async presentAproveReqToast() {
+  async presentCreatedToast() {
     const toast = await this.toastController.create({
       message: 'Mapa de aprendizaje creado exitosamente',
       icon: 'checkmark-circle',
@@ -100,7 +100,7 @@ export class MapaAprendizajeComponent implements OnInit {
       lapsoEjecucion: this.lapsos
     };
     console.log('Esto termino siendo el post',post);
-    this.presentAproveReqToast();
     this.modalController.dismiss(post);
+    this.presentCreatedToast();
   }
 }

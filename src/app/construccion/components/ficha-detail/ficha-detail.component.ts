@@ -79,39 +79,39 @@ export class FichaDetailComponent implements OnInit {
       // preventivas integrales y protección ambiental.`]],
       // consideracionesPerfilGenerico: ['Manejo de aplicaciones e Internet']
 
-      areaOcupacional: [],
-      subAreaOcupacional: [],
-      areaConocimiento: [],
-      uc: [],
+      areaOcupacional: [null],
+      subAreaOcupacional: [null],
+      areaConocimiento: [null],
+      uc: [null],
       codigoUc: ['No asignado'],
-      totalHorasFormacion: [],
-      tipoUc: [],
-      modalidadFormacion: [],
-      proposito: [],
-      dirigidoA: [],
-      nivelDominioEsperado: [],
-      sinopsis: [],
-      ejesTransversales: [],
-      perfilFacilitador: [],
-      perfilGenericoIngreso: [],
-      perfilEgreso: [],
-      consideracionesPerfilGenerico: []
+      totalHorasFormacion: [null],
+      tipoUc: [null],
+      modalidadFormacion: [null],
+      proposito: [null],
+      dirigidoA: [null],
+      nivelDominioEsperado: [null],
+      sinopsis: [null],
+      ejesTransversales: [null],
+      perfilFacilitador: [null],
+      perfilGenericoIngreso: [null],
+      perfilEgreso: [null],
+      consideracionesPerfilGenerico: [null]
 
     });
     this.mapForm = this.formBuilder.group({
-      logroParticipante: [],
-      horasPracticas:[],
-      horasTeoricas:[],
-      ejesTematicos:[],
-      observacionDirecta:[],
-      producto:[],
-      conocimiento:[]
+      logroParticipante: [null],
+      horasPracticas:[null],
+      horasTeoricas:[null],
+      ejesTematicos:[null],
+      observacionDirecta:[null],
+      producto:[null],
+      conocimiento:[null]
     });
     this.resourcesAndSpacesForm = this.formBuilder.group({
-      numeroParticipantes:[],
+      numeroParticipantes:[null],
     });
-    this.colectiveTableForm = this.formBuilder.group({});
-    this.digitalResourcesForm = this.formBuilder.group({});
+    //this.colectiveTableForm = this.formBuilder.group({});
+    //this.digitalResourcesForm = this.formBuilder.group({});
   }
 
   pushList(formKey: string,event: any, field: string){
@@ -188,6 +188,7 @@ export class FichaDetailComponent implements OnInit {
     if (data !== undefined && data !== null) {
       console.log('la data del modal es: ',data);
       //this.mapasAprendizaje.push(data);
+      this.estrategiasMetodologicas.push(data);
     }
   }
 }

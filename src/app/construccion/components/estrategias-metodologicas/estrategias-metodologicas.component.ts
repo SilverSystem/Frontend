@@ -12,15 +12,6 @@ export class EstrategiasMetodologicasComponent  implements OnInit {
   estrategiasEnsenanzas = [];
   mediosInstruccionales = [];
   tecnicasInstruccionales = [];
-  estrategiasAprendizaje = {
-    cognitivas: '',
-    metaCognitivas: '',
-    estrategiaRegulacionRecursos: '',
-    motivacionales: '',
-  };
-  conocimiento = [];
-  lapsos= [];
-  @Input() numeration: number;
   constructor(
     private toastController: ToastController,
     private modalController: ModalController,
@@ -33,13 +24,13 @@ export class EstrategiasMetodologicasComponent  implements OnInit {
 
   setup(){
     this.estrategiasForm= this.formBuilder.group({
-      estrategiasdeEnsenanza: [],
-      mediosInstruccionales:[],
-      tecnicasInstruccionales:[],
-      cognitivas:[],
-      metacognitivas:[],
-      estrategiasregulacionRecursos:[],
-      motivacionales:[]
+      estrategiasdeEnsenanza: [null],
+      mediosInstruccionales:[null],
+      tecnicasInstruccionales:[null],
+      cognitivas:[null],
+      metaCognitivas:[null],
+      estrategiasRegulacionRecursos:[null],
+      motivacionales:[null]
     });
   }
   cancel() {
@@ -53,24 +44,30 @@ export class EstrategiasMetodologicasComponent  implements OnInit {
     event.target.value = '';
   }
  }
- objKeys(){
-  return Object.keys(this.estrategiasAprendizaje);
- }
- dotSubType(event: any, field: string){
-  console.log(event.target.value);
-  const userInput = event.target.value;
-  if(userInput !== ''){
-    this.estrategiasAprendizaje[field] = [...this.estrategiasAprendizaje[field],userInput] ;
-    event.target.value = '';
-  }
- }
- pushList(event: any, field: string){
-  console.log(event.target.value);
-  const userInput = event.target.value;
-  if(userInput !== ''){
-    this.estrategiasAprendizaje[field] = `${userInput}` ;
-    event.target.value = '';
-
-  }
+async presentCreatedToast() {
+  const toast = await this.toastController.create({
+    message: 'Estrategias metodológicas, didácticas y pedagógicas creadas exitosamente',
+    icon: 'checkmark-circle',
+    position: 'bottom',
+    color: 'success',
+    duration: 2000,
+  });
+  toast.present();
+}
+submit(){
+  const form = this.estrategiasForm.value;
+  console.log('Esto termino siendo el form',form);
+  const post = {
+      estrategiasdeEnsenanza: this.estrategiasEnsenanzas,
+      mediosInstruccionales:this.mediosInstruccionales,
+      tecnicasInstruccionales:this.tecnicasInstruccionales,
+      cognitivas:form.cognitivas,
+      metaCognitivas:form.metaCognitivas,
+      estrategiasRegulacionRecursos:form.estrategiasRegulacionRecursos,
+      motivacionales:form.motivacionales
+  };
+  console.log('Esto termino siendo el post',post);
+  this.modalController.dismiss(post);
+  this.presentCreatedToast();
 }
 }
