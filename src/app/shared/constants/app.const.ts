@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 export const specialCharactersRegex = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
 export const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 export const onlyNumbersRegex = /^\d+$/;
@@ -5,11 +6,11 @@ export const socialReasonRegex = /[`!@#$%^&*()_+=\[\]{};':"\\|,<>\/?~]/;
 export const IMG_LOGO = '../../../assets/LogoInces.png';
 export const selectColor = (conditionCA: any) => {
   const colors = {
-    aprobadaCompletamente: 'success',
-    enCurso: 'tertiary',
-    conRechazo: 'danger',
-    pendientes: 'warning',
-    sinAsignar: 'secondary'
+    'En curso': 'secondary',
+    Aprobada: 'success',
+    'Con rechazo': 'danger',
+    sinAsignar: 'tertiary',
+    Pendiente: 'warning',
   };
   return colors[conditionCA] || 'secondary' ;
 };

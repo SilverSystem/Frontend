@@ -6,6 +6,7 @@ import { customEmailValidator, validationErrors } from 'src/app/shared/helpers/c
 import { MapaAprendizajeComponent } from '../mapa-aprendizaje/mapa-aprendizaje.component';
 import { EstrategiasMetodologicasComponent } from '../estrategias-metodologicas/estrategias-metodologicas.component';
 import { GuiaEvaluacionComponent } from '../guia-evaluacion/guia-evaluacion.component';
+import { ConstruccionService } from '../../services/construccion.service';
 
 @Component({
   selector: 'app-ficha-detail',
@@ -30,7 +31,8 @@ export class FichaDetailComponent implements OnInit {
     private formBuilder: FormBuilder,
     private alertController: AlertController,
     private toastController: ToastController,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private construccionService: ConstruccionService,
   ) { }
 
   ngOnInit() {
@@ -85,7 +87,7 @@ export class FichaDetailComponent implements OnInit {
       subAreaOcupacional: [null],
       areaConocimiento: [null],
       uc: [null],
-      codigoUc: ['No asignado'],
+      codigoUC: ['No asignado'],
       totalHorasFormacion: [null],
       tipoUc: [null],
       modalidadFormacion: [null],
@@ -211,5 +213,17 @@ export class FichaDetailComponent implements OnInit {
       console.log('la data del modal es: ',data);
       this.guiasEvaluacion.push(data);
     }
+  }
+  submit(){
+    const post = this.fichaDetailForm.value;
+    const sendedPost = {
+      ...post,
+      codigoUC: post.codigoUC !== 'No asignado' ? post.codigoUC : 0,
+      estadoUC: this.construccionService.estadosFichas.enCurso
+    };
+    console.log('la super ficha',sendedPost);
+    this.construccionService.saveFichaResumen(sendedPost).subscribe(data =>{
+      console.log('La respuesta de ficha resume',data);
+    });
   }
 }

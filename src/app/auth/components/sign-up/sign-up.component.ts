@@ -8,6 +8,7 @@ import {
   onlyNumbersValidator,
   validationErrors
 } from 'src/app/shared/helpers/custom-validators';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -24,7 +25,8 @@ export class SignUpComponent  implements OnInit {
     private formBuilder: FormBuilder,
     private alertController: AlertController,
     private toastController: ToastController,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
@@ -36,7 +38,7 @@ export class SignUpComponent  implements OnInit {
         validators: [Validators.required,customEmailValidator],
         updateOn: 'blur'
       }],
-      password:[null],
+      password:['qJ23&4yATBFR'],
       userType:[null,[Validators.required]],
       ci:[null,[Validators.required,onlyNumbersValidator]],
       name:[null,[Validators.required,specialCharactersValidator]],
@@ -51,5 +53,8 @@ export class SignUpComponent  implements OnInit {
   submit(){
     const user = this.signUpForm.value;
     console.log(user);
+    this.authService.signUp(user).subscribe(response =>{
+      console.log('Se registro un usuario y se respondio con',response);
+    });
   }
 }
