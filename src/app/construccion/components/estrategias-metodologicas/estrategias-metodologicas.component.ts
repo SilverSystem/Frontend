@@ -12,6 +12,7 @@ export class EstrategiasMetodologicasComponent  implements OnInit {
   estrategiasEnsenanzas = [];
   mediosInstruccionales = [];
   tecnicasInstruccionales = [];
+  @Input() estrategiaMetodologica: any;
   constructor(
     private toastController: ToastController,
     private modalController: ModalController,
@@ -27,11 +28,17 @@ export class EstrategiasMetodologicasComponent  implements OnInit {
       estrategiasdeEnsenanza: [null],
       mediosInstruccionales:[null],
       tecnicasInstruccionales:[null],
-      cognitivas:[null],
-      metaCognitivas:[null],
-      estrategiasRegulacionRecursos:[null],
-      motivacionales:[null]
+      cognitivas:[this.estrategiaMetodologica !== null ? this.estrategiaMetodologica.cognitivas : null],
+      metaCognitivas:[this.estrategiaMetodologica !== null ? this.estrategiaMetodologica.metaCognitivas : null],
+      estrategiasRegulacionRecursos:
+      [this.estrategiaMetodologica !== null ? this.estrategiaMetodologica.estrategiasRegulacionRecursos : null],
+      motivacionales:[this.estrategiaMetodologica !== null ? this.estrategiaMetodologica.motivacionales : null]
     });
+    if(this.estrategiaMetodologica !== null){
+      this.estrategiasEnsenanzas = this.estrategiaMetodologica.estrategiasdeEnsenanza;
+      this.mediosInstruccionales = this.estrategiaMetodologica.mediosInstruccionales;
+      this.tecnicasInstruccionales = this.estrategiaMetodologica.tecnicasInstruccionales;
+    }
   }
   cancel() {
     this.modalController.dismiss();
@@ -46,7 +53,9 @@ export class EstrategiasMetodologicasComponent  implements OnInit {
  }
 async presentCreatedToast() {
   const toast = await this.toastController.create({
-    message: 'Estrategias metodológicas, didácticas y pedagógicas creadas exitosamente',
+    message: this.estrategiaMetodologica !== null ?
+    'Estrategias metodológicas, didácticas y pedagógicas actualizadas exitosamente':
+    'Estrategias metodológicas, didácticas y pedagógicas creadas exitosamente',
     icon: 'checkmark-circle',
     position: 'bottom',
     color: 'success',

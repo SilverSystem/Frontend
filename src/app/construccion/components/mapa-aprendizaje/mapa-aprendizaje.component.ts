@@ -16,6 +16,7 @@ export class MapaAprendizajeComponent implements OnInit {
   conocimiento = [];
   lapsos = [];
   @Input() numeration: number;
+  @Input() mapaAprendizaje: any;
   constructor(
     private toastController: ToastController,
     private modalController: ModalController,
@@ -23,19 +24,28 @@ export class MapaAprendizajeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log('Esto a llegado como info de la db',this.mapaAprendizaje);
     this.setup();
   }
 
   setup() {
     this.mapaForm = this.formBuilder.group({
-      logroParticipante: [null],
-      horasTeoricas: [null],
-      horasPracticas: [null],
-      ejeTematico: [null],
+      logroParticipante: [this.mapaAprendizaje !== null ? this.mapaAprendizaje.logroParticipante : null],
+      horasTeoricas: [this.mapaAprendizaje !== null ? this.mapaAprendizaje.horasTeoricas : null],
+      horasPracticas: [this.mapaAprendizaje !== null ? this.mapaAprendizaje.horasPracticas : null],
+      ejeTematico: [this.mapaAprendizaje !== null ? this.mapaAprendizaje.ejeTematico : null],
       criteriosDesempeno: [null],
       evidenciasDesempeno: [null],
       lapsoEjecucion: [null]
     });
+    if(this.mapaAprendizaje !== null){
+      this.bulletPoints= this.mapaAprendizaje.detallesEjeTematico || {};
+      this.criterios= this.mapaAprendizaje.criteriosDesempeno || [];
+      this.observacionDirecta= this.mapaAprendizaje.evidenciasDesempeno.observacionDirecta || [];
+      this.producto= this.mapaAprendizaje.evidenciasDesempeno.producto || [];
+      this.conocimiento= this.mapaAprendizaje.evidenciasDesempeno.conocimiento || [];
+      this.lapsos= this.mapaAprendizaje.lapsoEjecucion || [];
+    }
   }
   cancel() {
     this.modalController.dismiss();
@@ -74,7 +84,7 @@ export class MapaAprendizajeComponent implements OnInit {
   }
   async presentCreatedToast() {
     const toast = await this.toastController.create({
-      message: 'Mapa de aprendizaje creado exitosamente',
+      message: this.mapaAprendizaje !== null ? 'Mapa de aprendizaje actualizado exitosamente': 'Mapa de aprendizaje creado exitosamente',
       icon: 'checkmark-circle',
       position: 'bottom',
       color: 'success',

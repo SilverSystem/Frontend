@@ -5,6 +5,7 @@ import { AlertController, ModalController, ToastController } from '@ionic/angula
 import { customEmailValidator, validationErrors } from 'src/app/shared/helpers/custom-validators';
 import { MapaAprendizajeComponent } from '../mapa-aprendizaje/mapa-aprendizaje.component';
 import { EstrategiasMetodologicasComponent } from '../estrategias-metodologicas/estrategias-metodologicas.component';
+import { GuiaEvaluacionComponent } from '../guia-evaluacion/guia-evaluacion.component';
 
 @Component({
   selector: 'app-ficha-detail',
@@ -16,6 +17,7 @@ export class FichaDetailComponent implements OnInit {
   mixedList = {};
   mapasAprendizaje: Array<any> = [];
   estrategiasMetodologicas: Array<any> = [];
+  guiasEvaluacion: Array<any> = [];
   tiposUc: Array<any> = ['Básica/Comun','Transversal/Genérica','Específica/Técnica'];
   public fichaDetailForm: FormGroup;
   public mapForm: FormGroup;
@@ -156,11 +158,12 @@ export class FichaDetailComponent implements OnInit {
   objKeys(mappingObj: any) {
     return Object.keys(mappingObj);
   }
-  async newMapaAdrendizaje(){
+  async newMapaAdrendizaje(mapaAprendizaje: any, index?: number){
     const modal = await this.modalController.create({
       component: MapaAprendizajeComponent,
       componentProps:{
-        numeration:this.mapasAprendizaje.length + 1
+        numeration:index? index: this.mapasAprendizaje.length + 1,
+        mapaAprendizaje
       },
       showBackdrop: true,
       cssClass: ['modal-xxl', 'backdrop'],
@@ -173,10 +176,11 @@ export class FichaDetailComponent implements OnInit {
       this.mapasAprendizaje.push(data);
     }
   }
-  async newEstrategiaMetodologica(){
+  async newEstrategiaMetodologica(estrategiaMetodologica: any){
     const modal = await this.modalController.create({
       component: EstrategiasMetodologicasComponent,
       componentProps:{
+        estrategiaMetodologica
         // numeration:this.mapasAprendizaje.length + 1
       },
       showBackdrop: true,
@@ -187,8 +191,25 @@ export class FichaDetailComponent implements OnInit {
     const { data } = await modal.onDidDismiss();
     if (data !== undefined && data !== null) {
       console.log('la data del modal es: ',data);
-      //this.mapasAprendizaje.push(data);
       this.estrategiasMetodologicas.push(data);
+    }
+  }
+  async newGuiaDeEvaluacion(index: number,guiaEvaluacion: any){
+    const modal = await this.modalController.create({
+      component: GuiaEvaluacionComponent,
+      componentProps:{
+         numeration:index + 1,
+         guiaEvaluacion
+      },
+      showBackdrop: true,
+      cssClass: ['modal-xxl', 'backdrop'],
+      backdropDismiss: false,
+    });
+    await modal.present();
+    const { data } = await modal.onDidDismiss();
+    if (data !== undefined && data !== null) {
+      console.log('la data del modal es: ',data);
+      this.guiasEvaluacion.push(data);
     }
   }
 }

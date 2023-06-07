@@ -22,7 +22,7 @@
                   </ion-col>
                   <ion-col size="12" sizeLg="6" sizeXl="4">
                     <ion-button size="default" type="submit" color="primary" expand="block" fill="solid"
-                      (click)="newMapaAdrendizaje()" [disabled]="true">
+                      [disabled]="true">
                       <ion-icon slot="start" name="cloud-download-outline"></ion-icon>
                       Descargar Ficha
                     </ion-button>
@@ -233,7 +233,7 @@
                       </ion-row>
                     </form>
                     <ion-button size="default" type="submit" color="primary" expand="block" fill="solid"
-                      (click)="newMapaAdrendizaje()">
+                      (click)="newMapaAdrendizaje(null)">
                       <ion-icon slot="start" name="add-circle-outline"></ion-icon>
                       Nuevo Mapa de Aprendizaje
                     </ion-button>
@@ -241,7 +241,18 @@
                       <ion-col size="12">
                         <ion-card>
                           <ion-card-header>
-                            <ion-card-title>Mapa de Aprendizaje (Programa de Estudios)</ion-card-title>
+                            <ion-row>
+                              <ion-col size="10">
+                                <ion-card-title>Mapa de Aprendizaje (Programa de Estudios)</ion-card-title>
+                              </ion-col>
+                              <ion-col size="2">
+                                <ion-button fill="outline" tooltip="Editar Mapa de Aprendizaje" placement="left"
+                                  size="default" expand="block" [hideDelay]="0" (click)="newMapaAdrendizaje(mapa,i+1)"
+                                  color="primary">
+                                  <ion-icon name="pencil-outline"></ion-icon>
+                                </ion-button>
+                              </ion-col>
+                            </ion-row>
                           </ion-card-header>
                           <ion-card-content>
                             <ion-row>
@@ -359,7 +370,18 @@
                         </ion-card>
                         <ion-card *ngIf="estrategiasMetodologicas[i]">
                           <ion-card-header>
-                            <ion-card-title>Estrategias Metodológicas, Didácticas y Pedagógicas</ion-card-title>
+                            <ion-row>
+                              <ion-col size="10">
+                                <ion-card-title>Estrategias Metodológicas, Didácticas y Pedagógicas</ion-card-title>
+                              </ion-col>
+                              <ion-col size="2">
+                                <ion-button fill="outline" tooltip="Editar Estrategia metodologica" placement="left"
+                                  size="default" expand="block" [hideDelay]="0"
+                                  (click)="newEstrategiaMetodologica(estrategiasMetodologicas[i])" color="primary">
+                                  <ion-icon name="pencil-outline"></ion-icon>
+                                </ion-button>
+                              </ion-col>
+                            </ion-row>
                           </ion-card-header>
                           <ion-card-content>
                             <ion-row>
@@ -508,10 +530,176 @@
                           </ion-col>
                         </ion-row>
                         <ion-button size="default" type="submit" color="primary" expand="block" fill="solid"
-                          (click)="newEstrategiaMetodologica()">
+                          (click)="newEstrategiaMetodologica(null)">
                           <ion-icon slot="start" name="add-circle-outline"></ion-icon>
                           Nueva Estrategia Metodologica
                         </ion-button>
+                        <ion-button size="default" type="submit" color="primary" expand="block" fill="solid"
+                          style="margin-top: 15px;" (click)="newGuiaDeEvaluacion(i,null)">
+                          <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+                          Nueva guía de evaluación
+                        </ion-button>
+                        <ion-card *ngIf="guiasEvaluacion[i]">
+                          <ion-card-header>
+                            <ion-row>
+                              <ion-col size="10">
+                                <ion-card-title>
+                                  Guía de Evaluación
+                                </ion-card-title>
+                              </ion-col>
+                              <ion-col size="2">
+                                <ion-button
+                                fill="outline"
+                                tooltip="Editar guia de evaluacion"
+                                placement="left"
+                                size="default"
+                                expand="block"
+                                [hideDelay]="0"
+                                (click)="newGuiaDeEvaluacion(i,guiasEvaluacion[i])"
+                                color="primary"
+                              >
+                                <ion-icon name="pencil-outline"></ion-icon>
+                              </ion-button>
+                              </ion-col>
+                            </ion-row>
+                            <ion-row class="ion-align-items-center ion-justify-content-center">
+                              <ion-col sizeLg="2" size="12" style="text-align: center;">
+                                <ion-text color="primary">
+                                  <h3>Evaluación según su propósito</h3>
+                                </ion-text>
+                              </ion-col>
+                              <ion-col sizeLg="4" size="12" style="text-align: center;">
+                                <ion-text color="primary">
+                                  <h3>Técnicas e instrumento</h3>
+                                </ion-text>
+                              </ion-col>
+                              <ion-col sizeLg="4" size="12" style="text-align: center;">
+                                <ion-text color="primary">
+                                  <h3>Formas de participación</h3>
+                                </ion-text>
+                              </ion-col>
+                              <ion-col sizeLg="2" size="12" style="text-align: center;">
+                                <ion-text color="primary">
+                                  <h3>Ubicación temporal de la evaluación</h3>
+                                </ion-text>
+                              </ion-col>
+                            </ion-row>
+                          </ion-card-header>
+                          <ion-card-content>
+                            <ion-item>
+                              <ion-label>Tema {{i+1}}</ion-label>
+                            </ion-item>
+                            <ion-card>
+                              <ion-card-content>
+                                <ion-row>
+                                  <ion-col sizeLg="2" size="12">
+                                    <ion-item class="border-details" lines="none">
+                                      <ion-label>Diagnóstica</ion-label>
+                                    </ion-item>
+                                  </ion-col>
+                                  <ion-col sizeLg="4" size="12">
+                                    <div class="border-details">
+                                      <ion-textarea [autoGrow]="true"
+                                        [value]="guiasEvaluacion[i].procedimientoDiagnostico" label="Procedimiento"
+                                        readonly="true" labelPlacement="floating" fill="outline"></ion-textarea>
+                                      <ion-textarea [autoGrow]="true" [value]="guiasEvaluacion[i].tecnicaDiagnostico"
+                                        label="Técnica" readonly="true" labelPlacement="floating"
+                                        fill="outline"></ion-textarea>
+                                      <ion-textarea [autoGrow]="true"
+                                        [value]="guiasEvaluacion[i].instrumentoDiagnostico" label="Instrumento"
+                                        readonly="true" labelPlacement="floating" fill="outline"></ion-textarea>
+                                    </div>
+                                  </ion-col>
+                                  <ion-col sizeLg="4" size="12">
+                                    <ion-item class="border-details" lines="none">
+                                      <p style="padding-left: 20px;"
+                                        *ngFor="let con of guiasEvaluacion[i].formaParticipacionDiagnostica">* {{con}}
+                                      </p>
+                                    </ion-item>
+                                  </ion-col>
+                                  <ion-col sizeLg="2" size="12">
+                                    <ion-item class="border-details" lines="none">
+                                      <ion-label><span>Momento:</span> Inicio</ion-label>
+                                    </ion-item>
+                                  </ion-col>
+                                </ion-row>
+                              </ion-card-content>
+                            </ion-card>
+                            <ion-card>
+                              <ion-card-content>
+                                <ion-row>
+                                  <ion-col sizeLg="2" size="12">
+                                    <ion-item class="border-details" lines="none">
+                                      <ion-label>Formativa</ion-label>
+                                    </ion-item>
+                                  </ion-col>
+                                  <ion-col sizeLg="4" size="12">
+                                    <div class="border-details">
+                                      <ion-textarea [autoGrow]="true"
+                                        [value]="guiasEvaluacion[i].procedimientoFormativa" label="Procedimiento"
+                                        readonly="true" labelPlacement="floating" fill="outline"></ion-textarea>
+                                      <ion-textarea [autoGrow]="true" [value]="guiasEvaluacion[i].tecnicaFormativa"
+                                        label="Técnica" readonly="true" labelPlacement="floating"
+                                        fill="outline"></ion-textarea>
+                                      <ion-textarea [autoGrow]="true" [value]="guiasEvaluacion[i].instrumentoFormativa"
+                                        label="Instrumento" readonly="true" labelPlacement="floating"
+                                        fill="outline"></ion-textarea>
+                                    </div>
+                                  </ion-col>
+                                  <ion-col sizeLg="4" size="12">
+                                    <ion-item class="border-details" lines="none">
+                                      <p style="padding-left: 20px;"
+                                        *ngFor="let con of guiasEvaluacion[i].formaParticipacionFormativa">* {{con}}
+                                      </p>
+                                    </ion-item>
+                                  </ion-col>
+                                  <ion-col sizeLg="2" size="12">
+                                    <ion-item class="border-details" lines="none">
+                                      <ion-label><span>Momento:</span> Desarrollo</ion-label>
+                                    </ion-item>
+                                  </ion-col>
+                                </ion-row>
+                              </ion-card-content>
+                            </ion-card>
+                            <ion-card>
+                              <ion-card-content>
+                                <ion-row>
+                                  <ion-col sizeLg="2" size="12">
+                                    <ion-item class="border-details" lines="none">
+                                      <ion-label>Sumativa</ion-label>
+                                    </ion-item>
+                                  </ion-col>
+                                  <ion-col sizeLg="4" size="12">
+                                    <div class="border-details">
+                                      <ion-textarea [autoGrow]="true" [value]="guiasEvaluacion[i].procedimientoSumativa"
+                                        label="Procedimiento" readonly="true" labelPlacement="floating"
+                                        fill="outline"></ion-textarea>
+                                      <ion-textarea [autoGrow]="true" [value]="guiasEvaluacion[i].tecnicaSumativa"
+                                        label="Técnica" readonly="true" labelPlacement="floating"
+                                        fill="outline"></ion-textarea>
+                                      <ion-textarea [autoGrow]="true" [value]="guiasEvaluacion[i].instrumentoSumativa"
+                                        label="Instrumento" readonly="true" labelPlacement="floating"
+                                        fill="outline"></ion-textarea>
+                                    </div>
+                                  </ion-col>
+                                  <ion-col sizeLg="4" size="12">
+                                    <ion-item class="border-details" lines="none">
+                                      <p style="padding-left: 20px;"
+                                        *ngFor="let con of guiasEvaluacion[i].formaParticipacionSumativa">* {{con}}
+                                      </p>
+                                    </ion-item>
+                                  </ion-col>
+                                  <ion-col sizeLg="2" size="12">
+                                    <ion-item class="border-details" lines="none">
+                                      <ion-label><span>Momento:</span> Cierre</ion-label>
+                                    </ion-item>
+                                  </ion-col>
+                                </ion-row>
+                              </ion-card-content>
+                            </ion-card>
+
+                          </ion-card-content>
+                        </ion-card>
                       </ion-col>
                     </ion-row>
                   </ion-col>
