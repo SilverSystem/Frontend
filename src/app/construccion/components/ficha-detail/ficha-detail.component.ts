@@ -7,6 +7,7 @@ import { MapaAprendizajeComponent } from '../mapa-aprendizaje/mapa-aprendizaje.c
 import { EstrategiasMetodologicasComponent } from '../estrategias-metodologicas/estrategias-metodologicas.component';
 import { GuiaEvaluacionComponent } from '../guia-evaluacion/guia-evaluacion.component';
 import { ConstruccionService } from '../../services/construccion.service';
+import { RejectionReasonModalComponent } from './components/rejection-reason-modal/rejection-reason-modal.component';
 
 @Component({
   selector: 'app-ficha-detail',
@@ -175,10 +176,14 @@ export class FichaDetailComponent implements OnInit {
     const { data } = await modal.onDidDismiss();
     if (data !== undefined && data !== null) {
       console.log('la data del modal es: ',data);
-      this.mapasAprendizaje.push(data);
+      if(index){
+        this.mapasAprendizaje[index] = data;
+      } else{
+        this.mapasAprendizaje.push(data);
+      }
     }
   }
-  async newEstrategiaMetodologica(estrategiaMetodologica: any){
+  async newEstrategiaMetodologica(index: number, estrategiaMetodologica: any){
     const modal = await this.modalController.create({
       component: EstrategiasMetodologicasComponent,
       componentProps:{
@@ -193,7 +198,11 @@ export class FichaDetailComponent implements OnInit {
     const { data } = await modal.onDidDismiss();
     if (data !== undefined && data !== null) {
       console.log('la data del modal es: ',data);
-      this.estrategiasMetodologicas.push(data);
+      if(estrategiaMetodologica !== null){
+        this.estrategiasMetodologicas[index] = data;
+      } else{
+        this.estrategiasMetodologicas.push(data);
+      }
     }
   }
   async newGuiaDeEvaluacion(index: number,guiaEvaluacion: any){
@@ -211,7 +220,35 @@ export class FichaDetailComponent implements OnInit {
     const { data } = await modal.onDidDismiss();
     if (data !== undefined && data !== null) {
       console.log('la data del modal es: ',data);
-      this.guiasEvaluacion.push(data);
+      if(guiaEvaluacion !== null){
+        this.guiasEvaluacion[index] = data;
+      } else{
+        this.guiasEvaluacion.push(data);
+      }
+    }
+  }
+  async presentToast(backMsg: string) {
+    const toast = await this.toastController.create({
+      message: backMsg,
+      icon: 'checkmark-circle',
+      position: 'bottom',
+      color: 'success',
+      duration: 2500,
+    });
+    toast.present();
+  }
+
+  async rejectionModal(index: number){
+    const modal = await this.modalController.create({
+      component: RejectionReasonModalComponent,
+      showBackdrop: true,
+      cssClass: ['modal-xxl', 'backdrop'],
+      backdropDismiss: false,
+    });
+    await modal.present();
+    const { data } = await modal.onDidDismiss();
+    if (data !== undefined && data !== null) {
+      console.log('la data del modal es: ',data);
     }
   }
   submit(){
@@ -224,6 +261,8 @@ export class FichaDetailComponent implements OnInit {
     console.log('la super ficha',sendedPost);
     this.construccionService.saveFichaResumen(sendedPost).subscribe(data =>{
       console.log('La respuesta de ficha resume',data);
+      this.presentToast('Detalle ficha creado exitosamente');
+      this.back();
     });
   }
 }

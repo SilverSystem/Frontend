@@ -50,11 +50,36 @@ export class SignUpComponent  implements OnInit {
     const errors = Object.keys(err);
     return validationErrors[errors[0]];
   }
+  async presentToastSignInOk(backMsg: string) {
+    const toast = await this.toastController.create({
+      message: backMsg,
+      icon: 'checkmark-circle',
+      position: 'bottom',
+      color: 'success',
+      duration: 2500,
+    });
+    toast.present();
+  }
+  async presentToastSignInFailed(backMsg: string) {
+    const toast = await this.toastController.create({
+      message: backMsg,
+      icon: 'close-circle',
+      position: 'bottom',
+      color: 'danger',
+      duration: 2500,
+    });
+    toast.present();
+  }
   submit(){
     const user = this.signUpForm.value;
     console.log(user);
     this.authService.signUp(user).subscribe(response =>{
       console.log('Se registro un usuario y se respondio con',response);
+      this.presentToastSignInOk('Usuario Registrado con exito');
+    },err =>{
+      const msg = err.message || 'Hubo un error y no se pudo guardar el usuario';
+      this.presentToastSignInFailed(msg);
+
     });
   }
 }

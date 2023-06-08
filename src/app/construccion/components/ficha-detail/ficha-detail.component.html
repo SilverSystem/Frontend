@@ -27,13 +27,13 @@
                     </ion-button>
                     <ion-row class="ion-justify-content-center ion-align-items-center">
                       <ion-col size="12" sizeLg="3">
-                        <ion-button color="danger" expand="block" fill="solid" shape="default">
+                        <ion-button color="danger" expand="block" fill="solid" shape="default" (click)="rejectionModal(0)">
                           <ion-icon slot="start" name="close-outline"></ion-icon>
                           Rechazar
                         </ion-button>
                       </ion-col>
                       <ion-col size="12" sizeLg="3">
-                        <ion-button color="success" expand="block" fill="solid" shape="default">
+                        <ion-button color="success" expand="block" fill="solid" shape="default" [disabled]="true">
                           <ion-icon slot="start" name="checkmark-outline"></ion-icon>
                           Aceptar
                         </ion-button>
@@ -55,7 +55,7 @@
                           <ion-label class="bold">Mapa de aprendizaje</ion-label>
                         </ion-segment-button>
                       </ion-item>
-                      <ion-item lines="none">
+                      <!-- <ion-item lines="none">
                         <ion-segment-button value="Recursos y espacios de formación y autoformación productiva">
                           <ion-label class="bold">Recursos y espacios de formación y autoformación
                             productiva</ion-label>
@@ -72,7 +72,7 @@
                         <ion-segment-button value="Recursos educativos digitales">
                           <ion-label class="bold">Recursos educativos digitales</ion-label>
                         </ion-segment-button>
-                      </ion-item>
+                      </ion-item> -->
                     </ion-segment>
                   </ion-col>
                 </ion-row>
@@ -226,7 +226,7 @@
                           </ion-select>
                         </ion-col>
                         <ion-col size="3">
-                          <ion-input class="form-input" type="text" formControlName="codigoUc" readonly="true"
+                          <ion-input class="form-input" type="text" formControlName="codigoUC" readonly="true"
                             label="Código de la Unidad Curricular" labelPlacement="stacked" fill="outline"></ion-input>
                         </ion-col>
                       </ion-row>
@@ -376,7 +376,7 @@
                               <ion-col size="2">
                                 <ion-button fill="outline" tooltip="Editar Estrategia metodologica" placement="left"
                                   size="default" expand="block" [hideDelay]="0"
-                                  (click)="newEstrategiaMetodologica(estrategiasMetodologicas[i])" color="primary">
+                                  (click)="newEstrategiaMetodologica(i,estrategiasMetodologicas[i])" color="primary">
                                   <ion-icon name="pencil-outline"></ion-icon>
                                 </ion-button>
                               </ion-col>
@@ -529,7 +529,7 @@
                           </ion-col>
                         </ion-row>
                         <ion-button size="default" type="submit" color="primary" expand="block" fill="solid"
-                          (click)="newEstrategiaMetodologica(null)">
+                          (click)="newEstrategiaMetodologica(i,null)">
                           <ion-icon slot="start" name="add-circle-outline"></ion-icon>
                           Nueva Estrategia Metodologica
                         </ion-button>

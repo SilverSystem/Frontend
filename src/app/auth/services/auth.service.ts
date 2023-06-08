@@ -62,7 +62,7 @@ export class AuthService {
   }
   logout() {
       localStorage.clear();
-      location.href = '/login';
+      location.href = '/';
   }
   setSession(loginResponse: any){
     this.token = loginResponse.access_token;

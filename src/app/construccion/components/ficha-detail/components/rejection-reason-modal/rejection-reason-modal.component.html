@@ -1,0 +1,36 @@
+<ion-row class="ion-align-items-center ion-justify-content-between">
+  <ion-col size="10" sizeLg="10">
+    <ion-title color="primary">
+      <h1 class="bold">Motivo de rechazo</h1>
+    </ion-title>
+  </ion-col>
+  <ion-col size="2" sizeLg="2">
+    <ion-button (click)="cancel()" size="large" fill="clear">
+      <ion-icon name="close-outline" color="dark"></ion-icon>
+    </ion-button>
+  </ion-col>
+</ion-row>
+<section class="inner-content container">
+  <ion-row>
+    <ion-col size="12">
+      <form [formGroup]="rejectReason" (ngSubmit)="rejection()">
+        <ion-textarea [autoGrow]="true" formControlName="reason" label="Escribe el motivo de rechazo" maxlength="270"
+          placeholder="Rechazo la ficha actual por..." labelPlacement="floating" fill="outline"></ion-textarea>
+      </form>
+    </ion-col>
+  </ion-row>
+  <ion-row class="ion-justify-content-start ion-align-items-center">
+    <ion-col size="12" sizeLg="3">
+      <ion-button (click)="cancel()" color="danger" expand="block" fill="solid" shape="default">
+        <ion-icon slot="start" name="close-outline"></ion-icon>
+        Cancelar
+      </ion-button>
+    </ion-col>
+    <ion-col size="12" sizeLg="5">
+      <ion-button color="success" expand="block" fill="solid" shape="default" (click)="rejection()">
+        <ion-icon slot="start" name="checkmark-outline"></ion-icon>
+        Aceptar y rechazar
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</section>
