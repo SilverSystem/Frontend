@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, ModalController, ToastController } from '@ionic/angular';
 import { customEmailValidator, validationErrors } from 'src/app/shared/helpers/custom-validators';
+import { fichasParser } from 'src/app/shared/helpers/parsers';
 import { MapaAprendizajeComponent } from '../mapa-aprendizaje/mapa-aprendizaje.component';
 import { EstrategiasMetodologicasComponent } from '../estrategias-metodologicas/estrategias-metodologicas.component';
 import { GuiaEvaluacionComponent } from '../guia-evaluacion/guia-evaluacion.component';
@@ -16,10 +17,13 @@ import { RejectionReasonModalComponent } from './components/rejection-reason-mod
 })
 export class FichaDetailComponent implements OnInit {
   flagInfo: boolean;
+  fichaID: number;
+  selectedFicha: any | null;
   mixedList = {};
   mapasAprendizaje: Array<any> = [];
   estrategiasMetodologicas: Array<any> = [];
   guiasEvaluacion: Array<any> = [];
+  fichas: Array<any> = [];
   tiposUc: Array<any> = ['Básica/Comun','Transversal/Genérica','Específica/Técnica'];
   public fichaDetailForm: FormGroup;
   public mapForm: FormGroup;
@@ -29,6 +33,7 @@ export class FichaDetailComponent implements OnInit {
   actualSegment= 'Ficha resumen de la unidad curricular';
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private alertController: AlertController,
     private toastController: ToastController,
@@ -37,6 +42,19 @@ export class FichaDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    const strFichaIndex = this.route.snapshot.paramMap.get('fichaID');
+    this.fichaID = Number(strFichaIndex);
+    this.construccionService.getFichasResumen().subscribe();
+    this.construccionService.unidadesCurriculares$.subscribe(data =>{
+      if(data !== undefined){
+        const cleanedData = fichasParser(data);
+        this.fichas= cleanedData;
+        const findedFicha = cleanedData.find(el => el.id === this.fichaID);
+        if(findedFicha){
+          this.selectedFicha = findedFicha;
+        }
+      }
+    });
     this.setupForm();
   }
   setupForm() {
@@ -83,37 +101,38 @@ export class FichaDetailComponent implements OnInit {
       // de temperatura, las unidades y el calor especifico , siguiendo el procedimiento técnico y tomando en cuenta las medidas
       // preventivas integrales y protección ambiental.`]],
       // consideracionesPerfilGenerico: ['Manejo de aplicaciones e Internet']
-
-      areaOcupacional: [null],
-      subAreaOcupacional: [null],
-      areaConocimiento: [null],
-      uc: [null],
-      codigoUC: ['No asignado'],
-      totalHorasFormacion: [null],
-      tipoUc: [null],
-      modalidadFormacion: [null],
-      proposito: [null],
-      dirigidoA: [null],
-      nivelDominioEsperado: [null],
-      sinopsis: [null],
-      ejesTransversales: [null],
-      perfilFacilitador: [null],
-      perfilGenericoIngreso: [null],
-      perfilEgreso: [null],
-      consideracionesPerfilGenerico: [null]
+      id:[this.fichaID !== 0 ? this.selectedFicha.id :null],
+      state:[this.fichaID !== 0 ? this.selectedFicha.state :null],
+      areaOcupacional: [this.fichaID !== 0 ? this.selectedFicha.areaOcupacional :null],
+      subAreaOcupacional: [this.fichaID !== 0 ? this.selectedFicha.subAreaOcupacional : null],
+      areaConocimiento: [this.fichaID !== 0 ? this.selectedFicha.areaConocimiento : null],
+      uc: [this.fichaID !== 0 ? this.selectedFicha.uc : null],
+      codigoUC: [this.fichaID !== 0 ? this.selectedFicha.codigoUC : 'No asignado'],
+      totalHorasFormacion: [this.fichaID !== 0 ? this.selectedFicha.totalHorasFormacion : null],
+      tipoUc: [this.fichaID !== 0 ? this.selectedFicha.tipoUc : null],
+      modalidadFormacion: [this.fichaID !== 0 ? this.selectedFicha.modalidadFormacion : null],
+      proposito: [this.fichaID !== 0 ? this.selectedFicha.proposito : null],
+      dirigidoA: [this.fichaID !== 0 ? this.selectedFicha.dirigidoA : null],
+      nivelDominioEsperado: [this.fichaID !== 0 ? this.selectedFicha.nivelDominioEsperado : null],
+      sinopsis: [this.fichaID !== 0 ? this.selectedFicha.sinopsis : null],
+      ejesTransversales: [this.fichaID !== 0 ? this.selectedFicha.ejesTransversales : null],
+      perfilFacilitador: [this.fichaID !== 0 ? this.selectedFicha.perfilFacilitador : null],
+      perfilGenericoIngreso: [this.fichaID !== 0 ? this.selectedFicha.perfilGenericoIngreso : null],
+      perfilEgreso: [this.fichaID !== 0 ? this.selectedFicha.perfilEgreso : null],
+      consideracionesPerfilGenerico: [this.fichaID !== 0 ? this.selectedFicha.consideraciones_perfil_ingreso : null],
 
     });
     this.mapForm = this.formBuilder.group({
-      logroParticipante: [null],
-      horasPracticas:[null],
-      horasTeoricas:[null],
-      ejesTematicos:[null],
-      observacionDirecta:[null],
-      producto:[null],
-      conocimiento:[null]
+      logroParticipante: [this.fichaID !== 0 ? this.selectedFicha : null],
+      horasPracticas:[this.fichaID !== 0 ? this.selectedFicha : null],
+      horasTeoricas:[this.fichaID !== 0 ? this.selectedFicha : null],
+      ejesTematicos:[this.fichaID !== 0 ? this.selectedFicha : null],
+      observacionDirecta:[this.fichaID !== 0 ? this.selectedFicha : null],
+      producto:[this.fichaID !== 0 ? this.selectedFicha : null],
+      conocimiento:[this.fichaID !== 0 ? this.selectedFicha : null]
     });
     this.resourcesAndSpacesForm = this.formBuilder.group({
-      numeroParticipantes:[null],
+      numeroParticipantes:[this.fichaID !== 0 ? this.selectedFicha : null],
     });
     //this.colectiveTableForm = this.formBuilder.group({});
     //this.digitalResourcesForm = this.formBuilder.group({});

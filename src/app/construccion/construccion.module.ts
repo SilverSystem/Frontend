@@ -19,6 +19,7 @@ import { SignUpComponent } from '../auth/components/sign-up/sign-up.component';
 import { RejectionReasonModalComponent } from
 './components/ficha-detail/components/rejection-reason-modal/rejection-reason-modal.component';
 
+
 const CONSTRUCCION_COMPONENTS = [
   ConstruccionPage,
   DashboardFichasComponent,

@@ -9,11 +9,12 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es-VE';
+import { FichasDashboardPipe } from './pipes/fichas-dashboard.pipe';
 
 registerLocaleData(localeEs, 'es-VE');
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, FichasDashboardPipe],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

@@ -72,10 +72,12 @@ export class DashboardFichasComponent  implements OnInit {
     this.setupForm();
     this.construccionService.getFichasResumen().subscribe();
     this.construccionService.unidadesCurriculares$.subscribe(data =>{
-      console.log('a la data',data);
-      const cleanedData = fichasParser(data || []);
-      console.log('la limpiada',cleanedData);
-      this.fichas= cleanedData;
+      if(data !== undefined){
+        console.log('a la data',data);
+        const cleanedData = fichasParser(data);
+        console.log('la limpiada',cleanedData);
+        this.fichas= cleanedData;
+      }
     });
   }
   showStates(){
@@ -89,8 +91,8 @@ export class DashboardFichasComponent  implements OnInit {
       searchEndDate: [null],
     });
   }
-  redirect(){
-    this.router.navigate(['construccion/fichaNumero']);
+  redirect(id?: number){
+    return id ? this.router.navigate(['construccion',id]) : this.router.navigate(['construccion/0']);
   }
   selectColor(conditionCA) {
     return selectColor(conditionCA);

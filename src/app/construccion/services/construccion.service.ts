@@ -42,7 +42,7 @@ export class ConstruccionService {
     );
   }
   saveFichaResumen(ficha: any): Observable<any>{
-    const url = `${API_URL}/ficha`;
+    const url = `${API_URL}/fichas`;
     return this.httpClient.post(url,ficha).pipe(
       map(request => request)
       // map((request) => {
@@ -53,7 +53,7 @@ export class ConstruccionService {
     );
   }
   getFichasResumen(): Observable<any>{
-    const url = `${API_URL}/ficha`;
+    const url = `${API_URL}/fichas`;
     return this.httpClient.get<any>(url).pipe(
       map(request => {
         this.unidadesCurriculares$.next(request.data);

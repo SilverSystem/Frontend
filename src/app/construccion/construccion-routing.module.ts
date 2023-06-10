@@ -16,7 +16,7 @@ const routes: Routes = [
         component:DashboardFichasComponent
       },
       {
-        path: 'fichaNumero',
+        path: ':fichaID',
         component: FichaDetailComponent
       },
       {
