@@ -14,7 +14,18 @@ import { fichasParser } from 'src/app/shared/helpers/parsers';
 })
 export class DashboardFichasComponent  implements OnInit {
   public searchSheetsForm: FormGroup;
+
+  startDate: any = null;
+  endDate: any = null;
+  nameApprover: any = null;
+  state: any = null;
+  searchColumn = null;
+  searchOrder = null;
+  column: any = null;
+  order: any = null;
+
   p= 1;
+  itemPosition = 0;
   fichas: Array<any> = [];
   //[
   //   fichas: Array<any> ={
@@ -85,10 +96,10 @@ export class DashboardFichasComponent  implements OnInit {
   }
   setupForm(){
     this.searchSheetsForm = this.formBuilder.group({
-      searchNameApprover: [null],
-      searchState:[null],
-      searchStartDate: [null],
-      searchEndDate: [null],
+      searchNameApprover: [''],
+      searchState:[''],
+      searchStartDate: [''],
+      searchEndDate: [''],
     });
   }
   redirect(id?: number){
@@ -96,5 +107,40 @@ export class DashboardFichasComponent  implements OnInit {
   }
   selectColor(conditionCA) {
     return selectColor(conditionCA);
+  }
+  searchFichas(){
+    const toSearch = this.searchSheetsForm.value;
+    if(toSearch.searchNameApprover.trim() !== '' || toSearch.searchState !== '' ||
+    toSearch.searchStartDate !== '' || toSearch.searchEndDate !== ''){
+      this.startDate = toSearch.searchStartDate;
+      this.endDate = toSearch.searchEndDate;
+      this.nameApprover = toSearch.searchNameApprover.trim();
+      this.state = toSearch.searchState;
+    }
+  }
+  clearSearchFichas(){
+    this.searchSheetsForm.controls['searchNameApprover'].setValue('');
+    this.searchSheetsForm.controls['searchState'].setValue('');
+    this.searchSheetsForm.controls['searchStartDate'].setValue('');
+    this.searchSheetsForm.controls['searchEndDate'].setValue('');
+    this.searchFichas();
+  }
+  movePage(pageNumber: number){
+    this.p = pageNumber;
+    this.itemPosition =  10 * (pageNumber - 1);
+  }
+  sorter(column){
+    let order: number | null = null;
+    if(this.order === null){
+      order = 1;
+    }
+    if(this.order === 1){
+      order = -1;
+    }
+    if(this.order === -1){
+      order = 1;
+    }
+    this.order = order;
+    this.column = column;
   }
 }

@@ -35,7 +35,7 @@
                         label="Fecha de finalización" labelPlacement="floating" fill="outline"></ion-input>
                     </ion-col>
                     <ion-col size="12" sizeLg="3" style="padding-left: 10px; padding-right: 10px;">
-                      <ion-select label="Estado" multiple="true" placeholder="" interface="popover" fill="outline">
+                      <ion-select label="Estado" placeholder="" interface="popover" fill="outline">
                         <ion-select-option *ngFor="let state of showStates()"
                           [value]="state">{{state}}</ion-select-option>
                       </ion-select>
@@ -45,7 +45,7 @@
                 <ion-row class="ion-align-items-center ion-justify-content-between">
                   <ion-col size="12" sizeLg="3" style="padding-left: 16px">
                     <ion-text color="dark" class="total-sheet">
-                      Total de Fichas: {{7}}
+                      Total de Fichas: {{fichas.length}}
                     </ion-text>
                   </ion-col>
                   <ion-col size="12" sizeLg="5">
@@ -56,7 +56,7 @@
                         </ion-button>
                       </ion-col>
                       <ion-col sizeLg="6" sizeXl="4">
-                        <ion-button size="default" type="submit" color="primary" expand="block" fill="solid">
+                        <ion-button size="default" type="submit" color="primary" expand="block" fill="solid" (click)="searchFichas()">
                           <ion-icon slot="start" name="search-outline"></ion-icon>
                           Buscar
                         </ion-button>
@@ -85,6 +85,7 @@
                         color="primary"
                         slot="end"
                         name="filter-sharp"
+                        (click)="sorter('startDate')"
                       ></ion-icon>
                     </ion-item>
                   </ion-col>
@@ -94,6 +95,7 @@
                         color="primary"
                         slot="end"
                         name="filter-sharp"
+                        (click)="sorter('endDate')"
                       ></ion-icon>
                       <ion-label color="dark" class="col-headers">
                         Fecha de fin
@@ -106,6 +108,7 @@
                         color="primary"
                         slot="end"
                         name="filter-sharp"
+                        (click)="sorter('approver')"
                       ></ion-icon>
                       <ion-label color="dark" class="col-headers">
                         Nombre aprobador
@@ -118,6 +121,7 @@
                         color="primary"
                         slot="end"
                         name="filter-sharp"
+                        (click)="sorter('state')"
                       ></ion-icon>
                       <ion-label color="dark" class="col-headers">
                         Estado de ficha
@@ -135,7 +139,7 @@
               </ion-card-header>
               <ion-card-content class="ion-no-padding">
                 <ion-list *ngIf="fichas.length; else NoFichas">
-                  <ion-row style="width: 100%" *ngFor="let ficha of fichas | paginate: { itemsPerPage: 10, currentPage: p }">
+                  <ion-row style="width: 100%" *ngFor="let ficha of fichas | fichasDashboard: startDate:endDate:nameApprover:state | sorter: column:order | paginate: { itemsPerPage: 10, currentPage: p }">
                     <ion-col size="12">
                       <ion-item button>
                         <ion-col
@@ -205,7 +209,7 @@
                   </ion-row>
                   <pagination-controls
                     class="ion-text-right ca-pagination"
-                    (pageChange)="p = $event"
+                    (pageChange)="movePage($event)"
                     directionIcons="false"
                     previousLabel="<"
                     nextLabel=">"

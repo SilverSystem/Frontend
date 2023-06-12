@@ -18,6 +18,8 @@ import { RecursosEspaciosFormacionComponent } from './components/recursos-espaci
 import { SignUpComponent } from '../auth/components/sign-up/sign-up.component';
 import { RejectionReasonModalComponent } from
 './components/ficha-detail/components/rejection-reason-modal/rejection-reason-modal.component';
+import { FichasDashboardPipe } from '../pipes/fichas-dashboard.pipe';
+import { SorterPipe } from '../pipes/sorter.pipe';
 
 
 const CONSTRUCCION_COMPONENTS = [
@@ -29,6 +31,8 @@ const CONSTRUCCION_COMPONENTS = [
   GuiaEvaluacionComponent,
   RecursosEspaciosFormacionComponent,
   RejectionReasonModalComponent,
+  FichasDashboardPipe,
+  SorterPipe,
   SignUpComponent
 ];
 @NgModule({

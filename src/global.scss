@@ -167,6 +167,9 @@ transform: none;
 .tooltip{
 background-color: #69707a !important;
 }
+.ca-pagination ::ng-deep .ngx-pagination .current {
+  background: #428cff;
+}
 
 .title {
   font-weight: bold;

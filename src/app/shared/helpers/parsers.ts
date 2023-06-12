@@ -28,7 +28,7 @@ export const fichasParser = (fichasToParse: Array<any>) =>{
       ficha[objResults[j]] = fichasToParse[i][j];
     }
     // eslint-disable-next-line @typescript-eslint/dot-notation
-    ficha['startDate'] = Date.now();
+    ficha['startDate'] =  new Date().toISOString();
     result.push(ficha);
   }
   return result;
