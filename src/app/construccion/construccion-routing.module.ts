@@ -16,13 +16,13 @@ const routes: Routes = [
         component:DashboardFichasComponent
       },
       {
+        path:'registrar-usuario',
+        component: SignUpComponent
+      },
+      {
         path: ':fichaID',
         component: FichaDetailComponent
       },
-      {
-        path:'registrar-usuario',
-        component: SignUpComponent
-      }
     ]
   }
 ];
