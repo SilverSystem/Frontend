@@ -23,8 +23,16 @@ export class FichaDetailComponent implements OnInit {
   mapasAprendizaje: Array<any> = [];
   estrategiasMetodologicas: Array<any> = [];
   guiasEvaluacion: Array<any> = [];
+  currentUserType: any = {};
   fichas: Array<any> = [];
   tiposUc: Array<any> = ['Básica/Comun','Transversal/Genérica','Específica/Técnica'];
+  modalidadesFormarcion: Array<any> = ['Mixta','Presencial','Virtual','A distancia'];
+  nivelDominio: Array<any> = [
+    'Nivel I. Desempeño rutinario.',
+    'Nivel II. Desempeño autónomo.',
+    'Nivel III. Desempeño de transferencia.',
+    'Nivel IV. Desempeño intuitivo.'
+  ];
   public fichaDetailForm: FormGroup;
   public mapForm: FormGroup;
   public resourcesAndSpacesForm: FormGroup;
@@ -44,6 +52,7 @@ export class FichaDetailComponent implements OnInit {
   ngOnInit() {
     const strFichaIndex = this.route.snapshot.paramMap.get('fichaID');
     this.fichaID = Number(strFichaIndex);
+    this.currentUserType = JSON.parse(localStorage.getItem('currentSession') || '{}');
     this.construccionService.getFichasResumen().subscribe();
     this.construccionService.unidadesCurriculares$.subscribe(data =>{
       if(data !== undefined){
@@ -278,10 +287,13 @@ export class FichaDetailComponent implements OnInit {
       estadoUC: this.construccionService.estadosFichas.enCurso
     };
     console.log('la super ficha',sendedPost);
-    this.construccionService.saveFichaResumen(sendedPost).subscribe(data =>{
-      console.log('La respuesta de ficha resume',data);
-      this.presentToast('Detalle ficha creado exitosamente');
-      this.back();
-    });
+    console.log('Mapas Aprendizaje',this.mapasAprendizaje);
+    console.log('Estrategias metodologicas',this.estrategiasMetodologicas);
+    console.log('Guias Evaluacion',this.guiasEvaluacion);
+    // this.construccionService.saveFichaResumen(sendedPost).subscribe(data =>{
+    //   console.log('La respuesta de ficha resume',data);
+    //   this.presentToast('Detalle ficha creado exitosamente');
+    //   this.back();
+    // });
   }
 }

@@ -12,6 +12,7 @@ export class NavbarComponent  implements OnInit {
   momentDate: Date;
   circleColor  = '#e65300';
   initials = 'IC';
+  userFullName = 'Sin nombre';
   colors = [
     '#EB7181',
     '#468547',
@@ -28,7 +29,10 @@ export class NavbarComponent  implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.createInititals('');
+    const obtainerUserType = JSON.parse(localStorage.getItem('currentSession') ?? '');
+    const fullname =  `${obtainerUserType.name} ${obtainerUserType.last_name}`;
+    this.userFullName = fullname;
+    this.createInititals(fullname);
     this.momentDate = new Date();
   }
 

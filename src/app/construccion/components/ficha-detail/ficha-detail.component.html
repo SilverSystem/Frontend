@@ -22,10 +22,10 @@
                   </ion-col>
                   <ion-col size="12" sizeLg="6" sizeXl="4">
                     <ion-button size="default" type="submit" color="primary" expand="block" fill="solid" (click)="submit()">
-                      <ion-icon slot="start" name="cloud-download-outline"></ion-icon>
+                      <ion-icon slot="start" name="bookmarks-outline"></ion-icon>
                       Guardar Ficha
                     </ion-button>
-                    <ion-row class="ion-justify-content-center ion-align-items-center">
+                    <ion-row class="ion-justify-content-center ion-align-items-center" *ngIf="currentUserType.user_type !== 'Presidencia'">
                       <ion-col size="12" sizeLg="3">
                         <ion-button color="danger" expand="block" fill="solid" shape="default" (click)="rejectionModal(0)">
                           <ion-icon slot="start" name="close-outline"></ion-icon>
@@ -131,8 +131,8 @@
                         </ion-col>
                         <ion-col size="12" sizeLg="4">
                           <!-- style="padding-left: 12px; padding-right: 10px;" -->
-                          <ion-select class="form-input" label="Tipo de Unidad Curricular " formControlName="tipoUc"
-                            interface="popover" fill="outline" placeholder="Seleccione una opcion">
+                          <ion-select class="form-input" label="Tipo de Unidad Curricular " formControlName="tipoUc" labelPlacement="floating"
+                            interface="popover" fill="outline">
                             <ion-select-option *ngFor="let tipoUc of tiposUc"
                               [value]="tipoUc">{{tipoUc}}</ion-select-option>
                           </ion-select>
@@ -143,10 +143,11 @@
                             labelPlacement="floating" fill="outline"></ion-input>
                         </ion-col>
                         <ion-col size="12" sizeLg="6">
-                          <ion-input class="form-input" type="text" formControlName="modalidadFormacion"
-                            [errorText]="showErrors('modalidadFormacion')"
-                            label="Modalidad de Formación y Autoformación Productiva" labelPlacement="floating"
-                            fill="outline"></ion-input>
+                          <ion-select class="form-input" label="Modalidad de Formación y Autoformación Productiva" formControlName="modalidadFormacion" labelPlacement="floating"
+                            interface="popover" fill="outline">
+                            <ion-select-option *ngFor="let modalidad of modalidadesFormarcion"
+                              [value]="modalidad">{{modalidad}}</ion-select-option>
+                        </ion-select>
                         </ion-col>
                         <ion-col size="12" style="margin-top: 10px; padding-left: 10px;">
                           <ion-textarea [autoGrow]="true" formControlName="proposito"
@@ -161,8 +162,11 @@
                             *{{proposito}}</p>
                         </ion-col>
                         <ion-col size="12" sizeLg="4">
-                          <ion-input class="form-input" type="text" formControlName="nivelDominioEsperado"
-                            label="Nivel de dominio esperado" labelPlacement="floating" fill="outline"></ion-input>
+                            <ion-select class="form-input" label="Nivel de dominio esperado" formControlName="nivelDominioEsperado" labelPlacement="floating"
+                            interface="popover" fill="outline">
+                            <ion-select-option *ngFor="let nivel of nivelDominio"
+                              [value]="nivel">{{nivel}}</ion-select-option>
+                        </ion-select>
                         </ion-col>
                         <ion-col size="12" style="margin-top: 10px; padding-left: 10px;">
                           <ion-textarea [autoGrow]="true" formControlName="sinopsis" label="Sinopsis (pertinencia)"
@@ -220,7 +224,7 @@
                         </ion-col>
                         <ion-col size="3">
                           <ion-select class="form-input" label="Tipo de Unidad Curricular " formControlName="tipoUc"
-                            interface="popover" fill="outline" placeholder="Seleccione una opcion">
+                            interface="popover" fill="outline" labelPlacement="floating">
                             <ion-select-option *ngFor="let tipoUc of tiposUc"
                               [value]="tipoUc">{{tipoUc}}</ion-select-option>
                           </ion-select>
