@@ -91,8 +91,13 @@
                         </ion-col>
                         <ion-col size="12" sizeLg="4">
                           <div class="input-icon-container">
-                            <ion-input class="form-input" type="text" formControlName="areaConocimiento"
-                              label="Área de Conocimiento" labelPlacement="floating" fill="outline"></ion-input>
+                            <ion-select class="form-input" label="Área de Conocimiento" formControlName="areaConocimiento" labelPlacement="floating"
+                            interface="popover" fill="outline">
+                            <ion-select-option *ngFor="let area of areasConocimiento()"
+                              [value]="area[0]">{{area[1]}}</ion-select-option>
+                          </ion-select>
+                            <!-- <ion-input class="form-input" type="text" formControlName="areaConocimiento"
+                              label="Área de Conocimiento" labelPlacement="floating" fill="outline"></ion-input> -->
                             <ion-icon name="information-circle-outline" size="large" color="primary"
                               tooltip="Un campo o área es la esfera amplia, la rama o el área de conocimiento que agrupa un conjunto de profesiones y ocupaciones"
                               placement="right" [hideDelay]="0"></ion-icon>
@@ -100,8 +105,13 @@
                         </ion-col>
                         <ion-col size="12" sizeLg="4">
                           <div class="input-icon-container">
-                            <ion-input class="form-input" type="text" formControlName="areaOcupacional"
-                              label="Área ocupacional" labelPlacement="floating" fill="outline"></ion-input>
+                            <ion-select class="form-input" label="Área ocupacional" formControlName="areaOcupacional" labelPlacement="floating"
+                            interface="popover" fill="outline">
+                            <ion-select-option *ngFor="let area of areasOcupacionales()"
+                            [value]="area[0]">{{area[1]}}</ion-select-option>
+                          </ion-select>
+                            <!-- <ion-input class="form-input" type="text" formControlName="areaOcupacional"
+                              label="Área ocupacional" labelPlacement="floating" fill="outline"></ion-input> -->
                             <ion-icon name="information-circle-outline" size="large" color="primary"
                               tooltip="Está conformada por un conjunto de ocupaciones que movilizan capacidades similares o transferibles"
                               placement="right" [hideDelay]="0"></ion-icon>
@@ -109,8 +119,13 @@
                         </ion-col>
                         <ion-col size="12" sizeLg="4">
                           <div class="input-icon-container">
-                            <ion-input class="form-input" type="text" formControlName="subAreaOcupacional"
-                              label="Sub Área Ocupacional" labelPlacement="floating" fill="outline"></ion-input>
+                            <ion-select class="form-input" label="Sub Área Ocupacional" formControlName="subAreaOcupacional" labelPlacement="floating"
+                            interface="popover" fill="outline">
+                            <ion-select-option *ngFor="let area of subAreasOcupacionales()"
+                            [value]="area[0]">{{area[1]}}</ion-select-option>
+                          </ion-select>
+                            <!-- <ion-input class="form-input" type="text" formControlName="subAreaOcupacional"
+                              label="Sub Área Ocupacional" labelPlacement="floating" fill="outline"></ion-input> -->
                             <ion-icon name="information-circle-outline" size="large" color="primary"
                               tooltip="Subgrupo o subconjunto de ocupaciones con capacidades similares o transferibles"
                               placement="right" [hideDelay]="0"></ion-icon>
@@ -123,7 +138,7 @@
                         <ion-col size="12" sizeLg="4">
                           <div class="input-icon-container">
                             <ion-input class="form-input" type="text" formControlName="uc" label="Unidad Curricular"
-                              labelPlacement="floating" fill="outline"></ion-input>
+                              labelPlacement="floating" fill="outline" maxlength="80"></ion-input>
                             <ion-icon name="information-circle-outline" size="large" color="primary"
                               tooltip="Constituyen un conjunto de contenidos integrados que se enfocan en desarrollar habilidades y conocimientos específicos en un área de conocimiento u ocupación"
                               placement="right" [hideDelay]="0"></ion-icon>
@@ -138,9 +153,14 @@
                           </ion-select>
                         </ion-col>
                         <ion-col size="12" sizeLg="6">
-                          <ion-input class="form-input" type="text" formControlName="totalHorasFormacion"
+                          <ion-select class="form-input" label="Total horas de formación" formControlName="totalHorasFormacion" labelPlacement="floating"
+                            interface="popover" fill="outline">
+                            <ion-select-option *ngFor="let horas of horasFormacion"
+                              [value]="horas">{{horas}}</ion-select-option>
+                          </ion-select>
+                          <!-- <ion-input class="form-input" type="text" formControlName="totalHorasFormacion"
                             [errorText]="showErrors('totalHorasFormacion')" label="Total horas de formación"
-                            labelPlacement="floating" fill="outline"></ion-input>
+                            labelPlacement="floating" fill="outline"></ion-input> -->
                         </ion-col>
                         <ion-col size="12" sizeLg="6">
                           <ion-select class="form-input" label="Modalidad de Formación y Autoformación Productiva" formControlName="modalidadFormacion" labelPlacement="floating"
@@ -150,7 +170,7 @@
                         </ion-select>
                         </ion-col>
                         <ion-col size="12" style="margin-top: 10px; padding-left: 10px;">
-                          <ion-textarea [autoGrow]="true" formControlName="proposito"
+                          <ion-textarea [autoGrow]="true" formControlName="proposito" maxlength="350"
                             label="Propósito clave de la Unidad Curricular" labelPlacement="floating"
                             fill="outline"></ion-textarea>
                         </ion-col>
@@ -169,7 +189,7 @@
                         </ion-select>
                         </ion-col>
                         <ion-col size="12" style="margin-top: 10px; padding-left: 10px;">
-                          <ion-textarea [autoGrow]="true" formControlName="sinopsis" label="Sinopsis (pertinencia)"
+                          <ion-textarea [autoGrow]="true" formControlName="sinopsis" label="Sinopsis (pertinencia)" maxlength="300"
                             labelPlacement="floating" fill="outline"></ion-textarea>
                         </ion-col>
                         <ion-col size="12" sizeLg="6">
@@ -202,7 +222,7 @@
                             labelPlacement="floating" fill="outline"></ion-input>
                         </ion-col>
                         <ion-col size="12">
-                          <ion-input class="form-input" type="text" formControlName="perfilEgreso"
+                          <ion-input class="form-input" type="text" formControlName="perfilEgreso" maxlength="400"
                             (keyup.enter)="pushList('fichaDetailForm',$event,'perfilEgreso')"
                             label="Perfil de egreso de la Unidad Curricular (Competencia General)"
                             labelPlacement="floating" fill="outline"></ion-input>
